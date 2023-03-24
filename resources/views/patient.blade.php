@@ -3,14 +3,26 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="css/patient.css">
         <title>Laravel</title>
     </head>
-    <body style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <p>patient</p>
-        <img
-        style="height: 80vh;"
-        src="https://cdn.discordapp.com/attachments/878045349799931935/1088058602213888030/Snapchat-1175678909.jpg" alt="image">
-        
-    </body>
+<body>
+    <h1> patienten </h1>
+    <section class="patients">
+        <article class="card">
+            <header>
+                <h2> patient1 </h2>
+                <p>naam:</p>
+                <p>geboortedatum</p>
+                <p>meh</p>
+                <p></p>
+            </header>
+        </article>
+                <article class="card">
+            <header>
+                <h2> patient1 </h2>
+            </header>
+        </article>
+    </section>
+</body>
 </html>
