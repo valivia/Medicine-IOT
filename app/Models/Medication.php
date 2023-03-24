@@ -7,20 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class patient extends Model
+class Medication extends Model
 {
     use HasFactory;
-    protected $table = "patients";
 
-
-    public function user(): BelongsTo
+    public function patient(): BelongsTo
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function medications(): HasMany
-    {
-        return $this->hasMany(Medication::class);
+        return $this->belongsTo(Patient::class);
     }
 
     public function timeslots(): HasMany
