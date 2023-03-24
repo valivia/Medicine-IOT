@@ -1,0 +1,120 @@
+:root {
+    --primary: #282C2f;
+    --accent: #466F7B;
+    --text: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary);
+    color: var(--text);
+    font-family: 'Rubik', sans-serif;
+
+}
+
+h1 {
+    padding-top: 5em;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+
+h2 {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0 1em 0;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Form  */
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-top: 3em;
+    width: min(80%, 60ch);
+}
+
+.login_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+#login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+#login2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: none;
+}
+
+
+
+input {
+    display: flex;
+    border: 3px solid var(--accent);
+    border-radius: 0.6em;
+    padding: 0.5em;
+    margin: 0.4em;
+
+}
+
+::placeholder {
+    color: var(--text);
+}
+
+
+#login label {
+    padding-left: .6em
+}
+
+/* Buttons */
+#buttons {
+    margin-top: 4em;
+    display: flex;
+    justify-content: center;
+    width: min(80%, 60ch);
+}
+
+button {
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.5em;
+    margin: 0 0.5em;
+    flex-grow: 1;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button[data-variant="primary"] {
+    background-color: var(--accent);
+}
+
+button[data-variant="secondary"] {
+    color: var(--accent);
+}
