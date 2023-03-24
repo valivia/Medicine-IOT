@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+route::get('/user/{id}', function($id){
+    // dd($id);
+    return response('user ' . $id);
+})->where('id', '[0-9]+');
+
+route::get('/patient/{id}', function($id){
+    return response('patient ' . $id);
+})->where('id', '[0-9]+');
+
+route::get('/patient/{id}/medication', function($id){
+    return response('medicatie ' . $id);
+})->where('id', '[0-9]+');
+
+route::get('/patient/{id}/timeslots', function($id){
+    return response('timeslots ' . $id);
+})->where('id', '[0-9]+');
