@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
 
 route::get('/user/{id}', function($id){
     // dd($id);
     return response('user ' . $id);
+    // return view('user');
 })->where('id', '[0-9]+');
 
 route::get('/patient/{id}', function($id){

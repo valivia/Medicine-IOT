@@ -1,0 +1,15 @@
+body{
+    height: 100%;
+}
+
+ul {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+li{
+    align-items: center;
+}
