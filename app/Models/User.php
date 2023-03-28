@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function patients(): HasMany
     {
-        return $this->hasMany(patient::class);
+        return $this->hasMany(Patient::class);
     }
 
     protected $fillable = [
