@@ -71,6 +71,12 @@ form {
     display: none;
 }
 
+#names{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
 
 
 input {

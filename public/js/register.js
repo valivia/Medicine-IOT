@@ -3,10 +3,10 @@ function next() {
     var form2 = document.getElementById("login2");
 
     if (form1.style.display === "none") {
-      form1.style.display = "block";
+      form1.style.display = "flex";
     } else {
       form1.style.display = "none";
-      form2.style.display = "block";
+      form2.style.display = "flex";
       
     }
   }
@@ -15,10 +15,10 @@ function next() {
     var form1 = document.getElementById("login");
     var form2 = document.getElementById("login2");
 
-    if (form1.style.display === "block") {
+    if (form1.style.display === "flex") {
       form1.style.display = "none";
     } else {
-      form1.style.display = "block";
+      form1.style.display = "flex";
       form2.style.display = "none";
       
     }
