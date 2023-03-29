@@ -4,25 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/patient.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
         <title>Laravel</title>
     </head>
 <body>
-    <h1> patienten </h1>
+    <h1> Patienten </h1>
     <section class="patients">
-        <article class="card">
-            <header>
-                <h2> patient1 </h2>
-                <p>naam:</p>
-                <p>geboortedatum</p>
-                <p>meh</p>
-                <p></p>
-            </header>
-        </article>
-                <article class="card">
-            <header>
-                <h2> patient1 </h2>
-            </header>
-        </article>
+        @include("_card")
     </section>
+
+    <section class="buttons">
+    <button class="button" data-variant="secondary" type="button">Nieuw</button>
+    </section>
+
 </body>
 </html>

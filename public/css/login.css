@@ -37,44 +37,45 @@ h2 {
 
 /* Form  */
 
+@keyframes slidein {
+    from {
+        transform: translateX(-250px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+
+.login_part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: min(80%, 60ch);
+}
+
+.login_part label {
+    padding-left: .6em
+}
+
 form {
     display: flex;
     flex-direction: column;
     text-align: left;
     padding-top: 3em;
-    width: min(80%, 60ch);
+    width: 100%;
+    animation-duration: 600ms;
+    animation-name: slidein;
+    animation-timing-function: ease-in-out;
 }
 
-.login_part{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-}
-
-#login{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-
-#login2{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    display: none;
-}
-
-#names{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+.name {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 
@@ -93,34 +94,32 @@ input {
 }
 
 
-#login label {
-    padding-left: .6em
-}
-
 /* Buttons */
-#buttons {
+.buttons {
     margin-top: 4em;
     display: flex;
     justify-content: center;
-    width: min(80%, 60ch);
+    width: 100%;
 }
 
-button {
+.button {
     border: 3px solid var(--accent);
     border-radius: 8px;
     padding: 0.5em;
     margin: 0 0.5em;
     flex-grow: 1;
+    text-decoration: none;
+    text-align: center;
 }
 
-button:hover {
+.button:hover {
     cursor: pointer;
 }
 
-button[data-variant="primary"] {
+.button[data-variant="primary"] {
     background-color: var(--accent);
 }
 
-button[data-variant="secondary"] {
+.button[data-variant="secondary"] {
     color: var(--accent);
 }

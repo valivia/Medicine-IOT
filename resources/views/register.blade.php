@@ -25,25 +25,26 @@
 
                 <label for="wachtwoord_hh">Wachtwoord herhalen</label>
                 <input placeholder="wachtwoord123..." type="text" id="wachtwoord_hh" name="wachtwoord_hh">
-            </form>
 
-            <section id="buttons">
-                <button data-variant="secondary">Terug</button>
-                <button onclick="next()" data-variant="primary">Volgende</button>
+                
+            </form>
+            <section class="buttons">
+                <button class="button" data-variant="secondary" type="button">Terug</button>
+                <button class="button" data-variant="primary" type="button" onclick="next()">Volgende</button>
             </section>
+            
         </section>
 
         <!-- 2 -->
-        <section id="login2" class="login_part">
+        <section id="login2" class="login_part" style="display: none;">
             <h1>PERSOONS GEGEVENS</h1>
 
             <form>
-
                 <label for="name">Naam</label>
 
-                <section id="names">
-                <input placeholder="Voornaam" type="text" id="name" name="name">
-                <input placeholder="Achternaam" type="text" id="name" name="lastname">
+                <section class="name">
+                    <input placeholder="Voornaam" type="text" name="name">
+                    <input placeholder="Achternaam" type="text" name="lastname">
                 </section>
 
                 <label for="dob">Geboortedatum</label>
@@ -51,11 +52,12 @@
 
                 <label for="telefoon">Telefoonnummer</label>
                 <input placeholder="0612345678" type="text" id="telefoon" name="telefoon">
-            </form>
 
-            <section id="buttons">
-                <button onclick="back()" data-variant="secondary">Terug</button>
-                <button data-variant="primary">Registreer</button>
+            </form>
+            
+            <section class="buttons">
+                <button class="button" data-variant="secondary" type="button" onclick="back()">Terug</button>
+                <button class="button" data-variant="primary" type="submit">Registreer</button>
             </section>
 
         </section>
