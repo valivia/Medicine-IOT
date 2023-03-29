@@ -29,7 +29,7 @@
                 
             </form>
             <section class="buttons">
-                <button class="button" data-variant="secondary" type="button">Terug</button>
+                <a class="button" data-variant="secondary" href="/login">Terug</a>
                 <button class="button" data-variant="primary" type="button" onclick="next()">Volgende</button>
             </section>
             
