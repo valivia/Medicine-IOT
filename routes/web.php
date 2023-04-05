@@ -42,3 +42,6 @@ route::get('/patient/{id}/medication', function($id){
 route::get('/patient/{id}/timeslots', function($id){
     return response('timeslots ' . $id);
 })->where('id', '[0-9]+');
+
+// Link naar de draai functie die redirect naar '/'
+Route::get('/draai', [DraaiController::class, 'nu_draaien']);
