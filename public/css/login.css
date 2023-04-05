@@ -1,0 +1,126 @@
+:root {
+    --primary: #282C2f;
+    --accent: #466F7B;
+    --text: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary);
+    color: var(--text);
+    font-family: 'Rubik', sans-serif;
+
+}
+
+h1 {
+    padding-top: 5em;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+
+h2 {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    padding: 1em 0 1em 0;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Form  */
+
+@keyframes slidein {
+    from {
+        transform: translateX(-250px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+
+.login_part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: min(80%, 60ch);
+}
+
+.login_part label {
+    padding-left: .6em
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-top: 3em;
+    width: 100%;
+    animation-duration: 600ms;
+    animation-name: slidein;
+    animation-timing-function: ease-in-out;
+}
+
+.name {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+
+
+input {
+    display: flex;
+    border: 3px solid var(--accent);
+    border-radius: 0.6em;
+    padding: 0.5em;
+    margin: 0.4em;
+
+}
+
+::placeholder {
+    color: var(--text);
+}
+
+
+/* Buttons */
+.buttons {
+    margin-top: 4em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.button {
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.5em;
+    margin: 0 0.5em;
+    flex-grow: 1;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button[data-variant="primary"] {
+    background-color: var(--accent);
+}
+
+.button[data-variant="secondary"] {
+    color: var(--accent);
+}
