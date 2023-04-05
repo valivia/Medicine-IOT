@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +47,5 @@ route::get('/patient/{id}/timeslots', function($id){
 
 // Link naar de draai functie die redirect naar '/'
 Route::get('/draai', [DraaiController::class, 'nu_draaien']);
+route::get('/user/{userId}', [UserController::class, 'index']);
+
