@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TimeslotController;
+use App\Http\Controllers\MedicationController;
+
 
 /*
 |--------------------------------------------------------------------------
