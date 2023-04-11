@@ -6,7 +6,7 @@
 
             <h1>ACCOUNT GEGEVENS</h1>
 
-            <form class="authForm" method="post">
+            <form action="/register" class="authForm" method="post">
                 @method('POST')
                 @csrf
 
@@ -19,12 +19,12 @@
 
                     <section class="formSection">
                         <label for="wachtwoord">Wachtwoord</label>
-                        <input placeholder="Wachtwoord123..." type="text" id="wachtwoord" name="wachtwoord">
+                        <input placeholder="Wachtwoord123..." type="text" id="wachtwoord" name="password">
                     </section>
 
                     <section class="formSection">
                         <label for="wachtwoord_hh">Wachtwoord herhalen</label>
-                        <input placeholder="wachtwoord123..." type="text" id="wachtwoord_hh" name="wachtwoord_hh">
+                        <input placeholder="wachtwoord123..." type="text" id="wachtwoord_hh" name="password_confirmation">
                     </section>
 
                     <section class="authButtons">
@@ -38,19 +38,14 @@
                     <section class="formSection">
                         <label for="name">Naam</label>
                         <section class="formHorizontal">
-                            <input placeholder="Voornaam" type="text" name="name" style="flex-grow: 1;">
-                            <input placeholder="Achternaam" type="text" name="lastname" style="flex-grow: 3;">
+                            <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;">
+                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;">
                         </section>
                     </section>
 
                     <section class="formSection">
                         <label for="dob">Geboortedatum</label>
                         <input placeholder="14-7-1992" type="text" id="dob" name="dob">
-                    </section>
-
-                    <section class="formSection">
-                        <label for="telefoon">Telefoonnummer</label>
-                        <input placeholder="0612345678" type="text" id="telefoon" name="telefoon">
                     </section>
 
 

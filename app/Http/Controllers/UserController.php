@@ -63,7 +63,25 @@ class UserController extends Controller
     {
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        $formFields = $request->validate([
+            'first_name' => ['required', 'min:2'],
+            'last_name' => ['required', 'min:2'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed', 'min:6'],
+            'dob' => ['required']
+        ]);
+
+        // Hash password
+        $formFields['password'] = bcrypt($formFields['password']);
+
+        // Create User
+        $user = User::create($formFields);
+
+        // Login
+        auth()->login($user);
+
+        return redirect('/users/' . $user->id);
     }
 }
