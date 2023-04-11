@@ -27,6 +27,11 @@ Route::get('/register', function () {
     return view('register');
 });
 
+// form om patient aan te maken
+Route::get('/create', function () {
+    return view('create');
+});
+
 route::get('/user/{id}', function($id){
     // dd($id);
     return response('user ' . $id);
