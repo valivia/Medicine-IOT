@@ -15,37 +15,33 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('patient');
-});
 
 Route::get('/login', function () {
-    return view('login');
+    return view('pages/login');
 });
 
 Route::get('/register', function () {
-    return view('register');
+    return view('pages/register');
 });
 
-route::get('/user/{id}', function($id){
+route::get('/user/{id}', function ($id) {
     // dd($id);
-    return response('user ' . $id);
+    return view("pages/patients");
     // return view('user');
 })->where('id', '[0-9]+');
 
-route::get('/patient/{id}', function($id){
+route::get('/patient/{id}', function ($id) {
     return response('patient ' . $id);
 })->where('id', '[0-9]+');
 
-route::get('/patient/{id}/medication', function($id){
+route::get('/patient/{id}/medication', function ($id) {
     return response('medicatie ' . $id);
 })->where('id', '[0-9]+');
 
-route::get('/patient/{id}/timeslots', function($id){
+route::get('/patient/{id}/timeslots', function ($id) {
     return response('timeslots ' . $id);
 })->where('id', '[0-9]+');
 
 // Link naar de draai functie die redirect naar '/'
 Route::get('/draai', [DraaiController::class, 'nu_draaien']);
 route::get('/user/{userId}', [UserController::class, 'index']);
-
