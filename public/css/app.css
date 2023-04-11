@@ -114,6 +114,7 @@ nav li a {
   }
 }
 .authForm {
+  width: 100%;
   animation-duration: 600ms;
   animation-name: slidein;
   animation-timing-function: ease-in-out;

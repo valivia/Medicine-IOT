@@ -5,7 +5,10 @@
         <main class="authMain">
             <h1>Welkom</h1>
 
-            <form id="login" class="form">
+            <form class="form" method="post">
+                @method('POST')
+                @csrf
+
                 <section class="formSection">
                     <label for="email">Email</label>
                     <input placeholder="Email adres" type="text" id="email" name="email">
@@ -15,12 +18,13 @@
                     <label for="wachtwoord">Wachtwoord</label>
                     <input placeholder="Wachtwoord" type="text" id="wachtwoord" name="wachtwoord">
                 </section>
+
+                <section class="authButtons">
+                    <a class="button" data-variant="secondary" href="/register">Registreer</a>
+                    <button class="button" data-variant="primary" type="submit">Log in</button>
+                </section>
             </form>
 
-            <section class="authButtons">
-                <a class="button" data-variant="secondary" href="/register">Registreer</a>
-                <button class="button" data-variant="primary" type="submit">Log in</button>
-            </section>
 
         </main>
     </div>
