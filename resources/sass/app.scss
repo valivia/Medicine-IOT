@@ -1,0 +1,41 @@
+@import "variables";
+
+// pages
+@import "pages/auth";
+
+// components
+@import "components/button";
+@import "components/form";
+
+@font-face {
+    font-family: "Rubik";
+    src: url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    color: $text;
+    background-color: $primary;
+    font-family: $font-family;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+
+h1 {
+    padding-top: 5em;
+    font-size: clamp(1rem, 5vw, 3rem);
+}
+
+h2 {
+    margin-top: 2em;
+    padding: 1em 0 1em 0;
+}
+
+::placeholder {
+    color: $text;
+}

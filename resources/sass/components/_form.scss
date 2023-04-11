@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1em;
+    width: 100%;
+}
+
+.formHorizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    background-color: transparent;
+    border: 3px solid $accent;
+    border-radius: 0.6em;
+    padding: 0.7em;
+}
