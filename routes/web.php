@@ -18,14 +18,13 @@ use App\Http\Controllers\MedicationController;
 |
 */
 
+Route::get("/login", [UserController::class, "loginIndex"])->name("login");
+Route::post("/login", [UserController::class, "login"]);
 
-Route::get('/login', [UserController::class, "loginIndex"]);
-Route::post('/login', [UserController::class, "login"]);
-
-Route::get('/register', [UserController::class, "registerIndex"]);
-Route::post('/register', [UserController::class, "register"]);
+Route::get("/register", [UserController::class, "registerIndex"])->name("register");
+Route::post("/register", [UserController::class, "register"]);
 
 Route::resource("/user", UserController::class);
-Route::resource("/patient", PatientController::class);
-Route::resource("/timeslot", TimeslotController::class);
-Route::resource("/medication", MedicationController::class);
+Route::resource("/patient", PatientController::class)->middleware("auth");
+Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
+Route::resource("/medication", MedicationController::class)->middleware("auth");
