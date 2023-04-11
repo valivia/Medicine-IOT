@@ -19,6 +19,6 @@
 
     &[data-variant="secondary"] {
         background-color: transparent;
-        color: var($accent);
+        color: $accent;
     }
 }

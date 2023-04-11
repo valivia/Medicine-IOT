@@ -1,3 +1,94 @@
+.button {
+  border: 3px solid #466f7b;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  flex-grow: 1;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.button:hover {
+  cursor: pointer;
+}
+.button[data-variant=primary] {
+  background-color: #466f7b;
+}
+.button[data-variant=secondary] {
+  background-color: transparent;
+  color: #466f7b;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1em;
+  width: 100%;
+}
+
+.formHorizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  background-color: transparent;
+  border: 3px solid #466f7b;
+  border-radius: 0.6em;
+  padding: 0.7em;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #2c3e50;
+}
+@media (min-width: 768px) {
+  nav {
+    top: 0;
+    bottom: unset;
+  }
+}
+nav ul {
+  width: min(100%, 70ch);
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-inline: 2rem;
+}
+
+nav li {
+  display: inline-block;
+  padding-block: 0.1em 1em;
+}
+@media (min-width: 768px) {
+  nav li {
+    padding-block: 0.5em 0.1em;
+  }
+}
+nav li:hover {
+  background: #ffffff;
+  color: #2c3e50;
+}
+nav li a {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  color: currentColor;
+}
+
 .authWrapper,
 .authMain {
   display: flex;
@@ -33,54 +124,6 @@
   display: flex;
   justify-content: center;
   width: 100%;
-}
-
-.button {
-  border: 3px solid #466f7b;
-  border-radius: 0.5em;
-  padding: 0.5em;
-  margin: 0 0.5em;
-  flex-grow: 1;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1rem;
-  color: #ffffff;
-}
-.button:hover {
-  cursor: pointer;
-}
-.button[data-variant=primary] {
-  background-color: #466f7b;
-}
-.button[data-variant=secondary] {
-  background-color: transparent;
-  color: var(#466f7b);
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: 1em;
-  width: 100%;
-}
-
-.formHorizontal {
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-}
-
-.formSection {
-  display: flex;
-  flex-direction: column;
-}
-
-.form input {
-  background-color: transparent;
-  border: 3px solid #466f7b;
-  border-radius: 0.6em;
-  padding: 0.7em;
 }
 
 @font-face {

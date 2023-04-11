@@ -1,11 +1,16 @@
-@import "variables";
-
-// pages
-@import "pages/auth";
+// Abstracts
+@import "abstracts/breakpoints";
+@import "abstracts/variables";
+@import "abstracts/utils";
 
 // components
 @import "components/button";
 @import "components/form";
+@import "components/nav";
+
+// pages
+@import "pages/auth";
+
 
 @font-face {
     font-family: "Rubik";
