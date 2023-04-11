@@ -19,16 +19,10 @@ use App\Http\Controllers\MedicationController;
 */
 
 
-Route::get('/login', function () {
-    return view('pages/login');
-});
-
+Route::get('/login', [UserController::class, "loginIndex"]);
 Route::post('/login', [UserController::class, "login"]);
 
-
-Route::get('/register', function () {
-    return view('pages/register');
-});
+Route::get('/register', [UserController::class, "registerIndex"]);
 Route::post('/register', [UserController::class, "register"]);
 
 Route::resource("/user", UserController::class);
