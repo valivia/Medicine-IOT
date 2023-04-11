@@ -9,11 +9,7 @@ class DraaiController extends Controller
 {
     public function nu_draaien()
     {
-        //hier komt de code voor het draaien
-        
-        // $draai->times_pressed += 1;
-        // $count->save();
-
-        return redirect('/');
+        //hier komt de code voor timeslots
+    
     }
 }
