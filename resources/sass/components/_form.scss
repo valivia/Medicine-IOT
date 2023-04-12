@@ -3,7 +3,7 @@
     flex-direction: column;
     text-align: left;
     gap: 1em;
-    width: 100%;
+    width: min(100%, 40em);
 }
 
 .formHorizontal {
@@ -12,6 +12,10 @@
     flex-wrap: wrap;
     width: 100%;
     gap: 1em;
+
+    & > * {
+        flex-grow: 1;
+    }
 }
 
 .formSection {
