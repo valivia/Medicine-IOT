@@ -2,8 +2,8 @@
 @include('partials.nav')
 
 @section('content')
-    <form class="form" method="POST">
-        @method('POST')
+    <form class="form" method="PUT">
+        @method('PUT')
         @csrf
 
         <h2>Create Patient</h2>
@@ -45,6 +45,11 @@
             @error('address')
                 <p class="error">{{ $message }}</p>
             @enderror
+        </section>
+
+        <section class="authButtons">
+            <a class="button" data-variant="secondary" href='/patient'>Back</a>
+            <button class="button" data-variant="primary" type="submit">Add Patient</button>
         </section>
 
     </form>
