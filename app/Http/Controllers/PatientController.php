@@ -13,7 +13,8 @@ class PatientController extends Controller
         'first_name' => ['required', 'min:2'],
         'last_name' => ['required', 'min:2'],
         'address' => ['required'],
-        'birthday' => ['required']
+        'birthday' => ['required'],
+        'device_id' => ['required'],
     ];
 
     // Show list all patients of user
@@ -70,7 +71,6 @@ class PatientController extends Controller
     // delete patient
     public function destroy(Patient $patient)
     {
-        dd([$patient->user_id, auth()->user()->id]);
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 

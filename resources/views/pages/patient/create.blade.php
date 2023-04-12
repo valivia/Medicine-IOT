@@ -43,6 +43,14 @@
             'required' => true,
         ])
 
+        @include('partials/input', [
+            'name' => 'device_id',
+            'label' => 'Device ID',
+            'placeholder' => 'E.g. 123456789',
+            'value' => old('device_id'),
+            'required' => true,
+        ])
+
         <input class="button" type="submit" value="Create Patient">
 
 

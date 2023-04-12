@@ -18,6 +18,8 @@ class Patient extends Model
         'birthday',
         'address',
         'user_id',
+        'device_id',
+        'last_fill',
     ];
 
 

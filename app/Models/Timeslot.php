@@ -10,6 +10,18 @@ class Timeslot extends Model
 {
     use HasFactory;
 
+    protected $table = "timeslots";
+
+    protected $fillable = [
+        'patient_id',
+        'medication_id',
+        'hour',
+        'minute',
+        'day',
+        'failed',
+        'received',
+    ];
+
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
