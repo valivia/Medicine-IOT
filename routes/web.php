@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TimeslotController;
+use App\Http\Controllers\MedicationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,33 +18,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::get("/login", [UserController::class, "loginIndex"])->name("login");
+Route::post("/login", [UserController::class, "login"]);
 
-Route::get('/login', function () {
-    return view('pages/login');
-});
+Route::get("/register", [UserController::class, "registerIndex"])->name("register");
+Route::post("/register", [UserController::class, "register"]);
 
-Route::get('/register', function () {
-    return view('pages/register');
-});
-
-route::get('/user/{id}', function ($id) {
-    // dd($id);
-    return view("pages/patients");
-    // return view('user');
-})->where('id', '[0-9]+');
-
-route::get('/patient/{id}', function ($id) {
-    return response('patient ' . $id);
-})->where('id', '[0-9]+');
-
-route::get('/patient/{id}/medication', function ($id) {
-    return response('medicatie ' . $id);
-})->where('id', '[0-9]+');
-
-route::get('/patient/{id}/timeslots', function ($id) {
-    return response('timeslots ' . $id);
-})->where('id', '[0-9]+');
-
-// Link naar de draai functie die redirect naar '/'
-Route::get('/draai', [DraaiController::class, 'nu_draaien']);
-route::get('/user/{userId}', [UserController::class, 'index']);
+Route::resource("/user", UserController::class)->middleware("auth");
+Route::resource("/patient", PatientController::class)->middleware("auth");
+Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
+Route::resource("/medication", MedicationController::class)->middleware("auth");

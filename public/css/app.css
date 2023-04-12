@@ -31,6 +31,8 @@
 .formHorizontal {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
   gap: 1em;
 }
 
@@ -44,6 +46,7 @@
   border: 3px solid #466f7b;
   border-radius: 0.6em;
   padding: 0.7em;
+  color: #ffffff;
 }
 
 nav {
@@ -113,6 +116,7 @@ nav li a {
   }
 }
 .authForm {
+  width: 100%;
   animation-duration: 600ms;
   animation-name: slidein;
   animation-timing-function: ease-in-out;
@@ -155,9 +159,9 @@ h2 {
 }
 
 ::-moz-placeholder {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 ::placeholder {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.5);
 }

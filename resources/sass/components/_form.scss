@@ -9,6 +9,8 @@
 .formHorizontal {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
     gap: 1em;
 }
 
@@ -22,4 +24,5 @@
     border: 3px solid $accent;
     border-radius: 0.6em;
     padding: 0.7em;
+    color: $text;
 }
