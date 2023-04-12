@@ -56,6 +56,7 @@ class UserController extends Controller
 
     public function registerIndex()
     {
+        error_log("get page");
         return view("pages/register");
     }
 
@@ -65,6 +66,7 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
             'last_name' => ['required', 'min:2'],
@@ -72,6 +74,7 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', 'min:6'],
             'dob' => ['required']
         ]);
+
 
         // Hash password
         $formFields['password'] = bcrypt($formFields['password']);
@@ -82,6 +85,6 @@ class UserController extends Controller
         // Login
         auth()->login($user);
 
-        return redirect('/users/' . $user->id);
+        return redirect('/user/' . $user->id);
     }
 }

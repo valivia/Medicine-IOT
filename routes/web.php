@@ -24,7 +24,7 @@ Route::post("/login", [UserController::class, "login"]);
 Route::get("/register", [UserController::class, "registerIndex"])->name("register");
 Route::post("/register", [UserController::class, "register"]);
 
-Route::resource("/user", UserController::class);
+Route::resource("/user", UserController::class)->middleware("auth");
 Route::resource("/patient", PatientController::class)->middleware("auth");
 Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
 Route::resource("/medication", MedicationController::class)->middleware("auth");

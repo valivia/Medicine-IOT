@@ -6,7 +6,7 @@
 
             <h1>ACCOUNT GEGEVENS</h1>
 
-            <form action="/register" class="authForm" method="post">
+            <form class="authForm" method="post">
                 @method('POST')
                 @csrf
 
@@ -15,16 +15,26 @@
                     <section class="formSection">
                         <label for="email">Email adres</label>
                         <input placeholder="Email adres" type="text" id="email" name="email">
+                        @error('email')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </section>
 
                     <section class="formSection">
-                        <label for="wachtwoord">Wachtwoord</label>
-                        <input placeholder="Wachtwoord123..." type="text" id="wachtwoord" name="password">
+                        <label for="password">Wachtwoord</label>
+                        <input placeholder="Wachtwoord123..." type="text" id="password" name="password">
+                        @error('password')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </section>
 
                     <section class="formSection">
-                        <label for="wachtwoord_hh">Wachtwoord herhalen</label>
-                        <input placeholder="wachtwoord123..." type="text" id="wachtwoord_hh" name="password_confirmation">
+                        <label for="password_confirmation">Wachtwoord herhalen</label>
+                        <input placeholder="wachtwoord123..." type="text" id="password_confirmation"
+                            name="password_confirmation">
+                        @error('password_confirmation')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </section>
 
                     <section class="authButtons">
@@ -35,17 +45,32 @@
 
                 {{-- Part 2 --}}
                 <div id="reg2" class="form authForm" style="display: none;">
-                    <section class="formSection">
-                        <label for="name">Naam</label>
-                        <section class="formHorizontal">
+                    <label for="name">Naam</label>
+
+                    <section class="formHorizontal">
+
+                        <section class="formSection">
                             <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;">
-                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;">
+                            @error('first_name')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
                         </section>
+
+                        <section class="formSection">
+                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;">
+                            @error('last_name')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </section>
+
                     </section>
 
                     <section class="formSection">
                         <label for="dob">Geboortedatum</label>
-                        <input placeholder="14-7-1992" type="text" id="dob" name="dob">
+                        <input placeholder="14-7-1992" type="date" id="dob" name="dob">
+                        @error('dob')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </section>
 
 
