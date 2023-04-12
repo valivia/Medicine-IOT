@@ -22,6 +22,9 @@ class CreatePatientsTable extends Migration
             $table->dateTime("birthday");
             $table->string("address");
 
+            $table->string("device_id")->unique();
+            $table->dateTime("last_fill")->nullable();
+
             $table->foreignId('user_id')->constrained();
         });
     }
