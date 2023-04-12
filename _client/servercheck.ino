@@ -1,15 +1,38 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
+#include <Stepper.h>
 
+const int stepsPerRevolution = 2048; 
+const int checkDelay = 300000;
 const char* ssid = "AndroidAP";
 const char* password = "12345678";
 const String serverUrl = "https://iot.hootsifer.com/timeslot"; // Replace with your Laravel server URL
 
+#define IN1 19
+#define IN2 18
+#define IN3 5
+#define IN4 17
+
+Stepper myStepper(stepsPerRevolution, IN1, IN3, IN2, IN4);
+const int buttonPin = 4;
+int buttonState = 0;
+
+void buttonPressed(){
+  // Stepper turn 1 slot
+   Serial.println("clockwise");
+  myStepper.step(stepsPerRevolution / 15);
+  // Cooldown
+  delay(1000);
+}
+
+
 void setup() {
-  Serial.begin(115200);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
+    myStepper.setSpeed(5);
+    pinMode(buttonPin, INPUT_PULLUP);
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
@@ -33,8 +56,12 @@ void loop() {
     String message = jsonDoc["message"].as<String>();
     Serial.println("Status: " + status);
     Serial.println("Message: " + message);
-    // Process data as needed
-    // ... your custom logic here ...
+    
+    buttonState = digitalRead(buttonPin);
+    if (buttonState == LOW) {
+    buttonPressed();
+    }
+
   } else {
     Serial.println("Error: " + String(httpCode));
   }
