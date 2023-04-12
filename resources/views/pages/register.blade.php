@@ -49,15 +49,15 @@
 
                     <section class="formHorizontal">
 
-                        <section class="formSection">
-                            <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;" value="{{old('first_name')}}">
+                        <section class="formSection" style="flex-grow: 1;">
+                            <input placeholder="Voornaam" type="text" name="first_name" value="{{old('first_name')}}">
                             @error('first_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </section>
 
-                        <section class="formSection">
-                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;" value="{{old('last_name')}}">
+                        <section class="formSection" style="flex-grow: 3;">
+                            <input placeholder="Achternaam" type="text" name="last_name" value="{{old('last_name')}}">
                             @error('last_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror
@@ -67,7 +67,7 @@
 
                     <section class="formSection">
                         <label for="dob">Geboortedatum</label>
-                        <input placeholder="14-7-1992" type="date" id="dob" name="dob">
+                        <input placeholder="14-7-1992" type="date" id="dob" name="dob"  value="{{old('dob')}}">
                         @error('dob')
                             <p class="error">{{ $message }}</p>
                         @enderror
