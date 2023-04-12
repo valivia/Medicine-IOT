@@ -1,8 +1,7 @@
 .button {
     border: 3px solid $accent;
-    border-radius: $border-radius;
+    border-radius: 100vmax;
     padding: 0.5em;
-    margin: 0 0.5em;
     flex-grow: 1;
     text-decoration: none;
     text-align: center;
@@ -20,5 +19,33 @@
     &[data-variant="secondary"] {
         background-color: transparent;
         color: $accent;
+    }
+}
+
+.iconButton {
+    border-radius: 100%;
+    padding: 0.9rem;
+    background-color: $primary;
+    border: none;
+    color: $text;
+    cursor: pointer;
+    border: 2px solid currentColor;
+
+    transition: all 0.1s ease-in-out;
+
+    & svg {
+        transform: scale(1);
+        transition: all 0.1s ease-in-out;
+    }
+
+    &:active svg {
+        transform: scale(0.9);
+    }
+
+    &:hover {
+        background-color: $secondary;
+        & svg {
+            transform: scale(1.2);
+        }
     }
 }

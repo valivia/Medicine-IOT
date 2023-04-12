@@ -1,0 +1,32 @@
+.card {
+    background: $accent;
+    border-radius: $border-radius;
+
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    padding: 1.5rem 1rem 1rem 1.8rem;
+}
+
+.cardInfo {
+    & header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & main {
+        padding-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & p {
+            margin: 0;
+        }
+    }
+}
+
+.cardInteractions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

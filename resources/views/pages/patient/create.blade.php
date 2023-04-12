@@ -29,6 +29,7 @@
         @include('partials/input', [
             'name' => 'birthday',
             'label' => 'Birthday',
+            'type' => 'date',
             'placeholder' => 'E.g. 01-01-2000',
             'value' => old('birthday'),
             'required' => true,

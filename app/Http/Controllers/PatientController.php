@@ -46,17 +46,17 @@ class PatientController extends Controller
     // single patient. return view 'pages/patient/show'
     public function show(Patient $patient)
     {
-        return view("pages/patient/show", ["patient" => $patient]);
+        return view("pages/patient/show", compact("patient"));
     }
 
     // return view
     public function edit(Patient $patient)
     {
-        return view('pages/patient/edit', ["patient" => $patient]);
+        return view('pages/patient/edit', compact("patient"));
     }
 
     // put request
-    public function update(Request $request, $patient)
+    public function update(Request $request, Patient $patient)
     {
         $formFields = $request->validate($this->validation);
 

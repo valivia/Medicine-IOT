@@ -1,8 +1,8 @@
 @extends('index')
-@include('partials.nav')
 
 @section('content')
-    <form class="form" method="POST" action="{{ route('patient.update') }}">
+    @include('partials.nav')
+    <form class="form" method="POST" action="{{ route('patient.update', $patient) }}">
         @method('PUT')
         @csrf
 
@@ -28,8 +28,9 @@
         @include('partials/input', [
             'name' => 'birthday',
             'label' => 'Birthday',
+            'type' => 'date',
             'placeholder' => 'E.g. 01-01-2000',
-            'value' => old('birthday') ?? $patient->birthday,
+            'value' => old('birthday') ?? date('Y-m-d', strtotime($patient->birthday)),
             'required' => true,
         ])
 

@@ -1,8 +1,7 @@
 .button {
-  border: 3px solid #466f7b;
-  border-radius: 0.5em;
+  border: 3px solid #4b656d;
+  border-radius: 100vmax;
   padding: 0.5em;
-  margin: 0 0.5em;
   flex-grow: 1;
   text-decoration: none;
   text-align: center;
@@ -13,11 +12,35 @@
   cursor: pointer;
 }
 .button[data-variant=primary] {
-  background-color: #466f7b;
+  background-color: #4b656d;
 }
 .button[data-variant=secondary] {
   background-color: transparent;
-  color: #466f7b;
+  color: #4b656d;
+}
+
+.iconButton {
+  border-radius: 100%;
+  padding: 0.9rem;
+  background-color: #1f2122;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  transition: all 0.1s ease-in-out;
+}
+.iconButton svg {
+  transform: scale(1);
+  transition: all 0.1s ease-in-out;
+}
+.iconButton:active svg {
+  transform: scale(0.9);
+}
+.iconButton:hover {
+  background-color: #2c3e50;
+}
+.iconButton:hover svg {
+  transform: scale(1.2);
 }
 
 .form {
@@ -46,7 +69,7 @@
 
 .form input {
   background-color: transparent;
-  border: 3px solid #466f7b;
+  border: 3px solid #4b656d;
   border-radius: 0.6em;
   padding: 0.7em;
   color: #ffffff;
@@ -57,7 +80,7 @@ nav {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #2c3e50;
+  background: #4b656d;
 }
 @media (min-width: 768px) {
   nav {
@@ -66,13 +89,18 @@ nav {
   }
 }
 nav ul {
-  width: min(100%, 70ch);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   list-style: none;
   margin: 0;
   padding: 0;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
+}
+@media (min-width: 768px) {
+  nav ul {
+    justify-content: flex-start;
+  }
 }
 
 nav li {
@@ -93,6 +121,34 @@ nav li a {
   padding: 1em;
   text-decoration: none;
   color: currentColor;
+}
+
+.card {
+  background: #4b656d;
+  border-radius: 1em;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  padding: 1.5rem 1rem 1rem 1.8rem;
+}
+
+.cardInfo header {
+  display: flex;
+  justify-content: space-between;
+}
+.cardInfo main {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cardInfo main p {
+  margin: 0;
+}
+
+.cardInteractions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .authWrapper {
@@ -131,6 +187,25 @@ nav li a {
   width: 100%;
 }
 
+.patients {
+  width: min(100%, 50rem);
+}
+
+.patientsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.patientsMain {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+}
+
 @font-face {
   font-family: "Rubik";
   src: url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
@@ -140,8 +215,8 @@ html {
   margin: 0;
   padding: 0;
   color: #ffffff;
-  background-color: #282c2f;
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", "Roboto", sans-serif;
+  background: #1f2122;
 }
 
 body {
@@ -149,20 +224,34 @@ body {
   flex-direction: column;
   min-height: 100vh;
   align-items: center;
+  padding: 1rem;
   padding-top: 4rem;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
 }
 
 h1 {
-  font-size: clamp(1rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 h2 {
-  padding: 1em 0 1em 0;
+  font-size: clamp(1rem, 5vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(0.75rem, 5vw, 1.5rem);
+  padding: 0;
+  margin: 0;
 }
 
 ::-moz-placeholder {
@@ -171,4 +260,10 @@ h2 {
 
 ::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+svg {
+  fill: currentColor;
+  width: 1.1rem;
+  height: 1.1rem;
 }

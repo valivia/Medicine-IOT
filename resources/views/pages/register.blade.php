@@ -73,6 +73,7 @@
                 @include('partials/input', [
                     'name' => 'dob',
                     'label' => 'Date of birth',
+                    'type' => 'date',
                     'placeholder' => 'E.g. 14-7-1992',
                     'value' => old('dob'),
                     'required' => true,
