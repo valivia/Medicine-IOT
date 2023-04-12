@@ -60,17 +60,20 @@ class UserController extends Controller
         return view("pages/register");
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $formFields = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
+
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/user/');
+
+            return redirect('/');
         }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
 
     public function register(Request $request)
