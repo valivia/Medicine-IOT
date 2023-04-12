@@ -49,15 +49,15 @@
 
                     <section class="formHorizontal">
 
-                        <section class="formSection">
-                            <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;">
+                        <section class="formSection" style="flex-grow: 1;">
+                            <input placeholder="Voornaam" type="text" name="first_name">
                             @error('first_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </section>
 
-                        <section class="formSection">
-                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;">
+                        <section class="formSection" style="flex-grow: 3;">
+                            <input placeholder="Achternaam" type="text" name="last_name">
                             @error('last_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror
