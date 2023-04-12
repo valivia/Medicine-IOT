@@ -49,7 +49,7 @@ class PatientController extends Controller
     }
 
     // return view
-    public function edit($patient)
+    public function edit(Patient $patient)
     {
         return view('pages/patient/edit', ["patient" => $patient]);
     }
@@ -68,8 +68,9 @@ class PatientController extends Controller
     }
 
     // delete patient
-    public function destroy($patient)
+    public function destroy(Patient $patient)
     {
+        dd([$patient->user_id, auth()->user()->id]);
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
