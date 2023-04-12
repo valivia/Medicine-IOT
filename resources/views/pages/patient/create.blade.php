@@ -1,12 +1,13 @@
 @extends('index')
-@include('partials.nav')
 
 @section('content')
-    <form class="form" method="POST">
+    @include('partials.nav')
+    <h1>Create Patient</h1>
+
+    <form class="form" method="POST" action="{{ route('patient.store') }}">
         @method('POST')
         @csrf
 
-        <h2>Create Patient</h2>
 
         @include('partials/input', [
             'name' => 'first_name',
@@ -41,6 +42,9 @@
             'value' => old('address'),
             'required' => true,
         ])
+
+        <input class="button" type="submit" value="Create Patient">
+
 
     </form>
 @endsection
