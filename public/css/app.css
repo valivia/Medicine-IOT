@@ -79,13 +79,16 @@ nav {
   position: fixed;
   bottom: 0;
   left: 0;
+  background: #2c3e50;
   width: 100%;
-  background: #4b656d;
 }
 @media (min-width: 768px) {
   nav {
     top: 0;
     bottom: unset;
+    padding-right: 10rem;
+    width: auto;
+    background: linear-gradient(-70deg, transparent 8rem, #2c3e50 8rem);
   }
 }
 nav ul {
@@ -129,6 +132,13 @@ nav li a {
   display: grid;
   grid-template-columns: 1fr min-content;
   padding: 1.5rem 1rem 1rem 1.8rem;
+  background: #2c3e50;
+  border: 6px solid #2c3e50;
+}
+@media (min-width: 768px) {
+  .card {
+    background: linear-gradient(-60deg, transparent 30%, #2c3e50 30%);
+  }
 }
 
 .cardInfo header {

@@ -2,15 +2,16 @@ nav {
     position: fixed;
     bottom: 0;
     left: 0;
+    background: $secondary;
+    width: 100%;
 
     @include medium() {
         top: 0;
         bottom: unset;
+        padding-right: 10rem;
+        width: auto;
+        background: linear-gradient(-70deg, transparent 8rem, $secondary 8rem);
     }
-
-    width: 100%;
-
-    background: $accent;
 
     ul {
         width: 100%;
