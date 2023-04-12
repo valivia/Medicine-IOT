@@ -1,0 +1,48 @@
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    @include medium() {
+        top: 0;
+        bottom: unset;
+    }
+
+    width: 100%;
+
+    background: $secondary;
+
+    ul {
+        width: min(100%, 70ch);
+        display: flex;
+        justify-content: space-between;
+
+        list-style: none;
+
+        margin: 0;
+        padding: 0;
+        padding-inline: 2rem;
+    }
+}
+
+nav li {
+    display: inline-block;
+
+    padding-block: 0.1em 1em;
+
+    @include medium() {
+        padding-block: 0.5em 0.1em;
+    }
+
+    &:hover {
+        background: $text;
+        color: $secondary;
+    }
+
+    a {
+        display: block;
+        padding: 1em;
+        text-decoration: none;
+        color: currentColor;
+    }
+}

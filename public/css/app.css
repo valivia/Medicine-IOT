@@ -1,0 +1,167 @@
+.button {
+  border: 3px solid #466f7b;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  flex-grow: 1;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.button:hover {
+  cursor: pointer;
+}
+.button[data-variant=primary] {
+  background-color: #466f7b;
+}
+.button[data-variant=secondary] {
+  background-color: transparent;
+  color: #466f7b;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1em;
+  width: 100%;
+}
+
+.formHorizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1em;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  background-color: transparent;
+  border: 3px solid #466f7b;
+  border-radius: 0.6em;
+  padding: 0.7em;
+  color: #ffffff;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #2c3e50;
+}
+@media (min-width: 768px) {
+  nav {
+    top: 0;
+    bottom: unset;
+  }
+}
+nav ul {
+  width: min(100%, 70ch);
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-inline: 2rem;
+}
+
+nav li {
+  display: inline-block;
+  padding-block: 0.1em 1em;
+}
+@media (min-width: 768px) {
+  nav li {
+    padding-block: 0.5em 0.1em;
+  }
+}
+nav li:hover {
+  background: #ffffff;
+  color: #2c3e50;
+}
+nav li a {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  color: currentColor;
+}
+
+.authWrapper,
+.authMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.authMain {
+  width: min(80%, 60ch);
+}
+
+/* Form  */
+@keyframes slidein {
+  from {
+    transform: translateX(-250px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+.authForm {
+  width: 100%;
+  animation-duration: 600ms;
+  animation-name: slidein;
+  animation-timing-function: ease-in-out;
+}
+
+/* Buttons */
+.authButtons {
+  margin-top: 4em;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  background-color: #282c2f;
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  padding-top: 5em;
+  font-size: clamp(1rem, 5vw, 3rem);
+}
+
+h2 {
+  margin-top: 2em;
+  padding: 1em 0 1em 0;
+}
+
+::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
