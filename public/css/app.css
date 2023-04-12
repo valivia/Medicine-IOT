@@ -25,7 +25,7 @@
   flex-direction: column;
   text-align: left;
   gap: 1em;
-  width: 100%;
+  width: min(100%, 40em);
 }
 
 .formHorizontal {
@@ -34,6 +34,9 @@
   flex-wrap: wrap;
   width: 100%;
   gap: 1em;
+}
+.formHorizontal > * {
+  flex-grow: 1;
 }
 
 .formSection {
@@ -92,16 +95,15 @@ nav li a {
   color: currentColor;
 }
 
-.authWrapper,
-.authMain {
+.authWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.authMain {
-  width: min(80%, 60ch);
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: 20vh;
 }
 
 /* Form  */
@@ -116,7 +118,6 @@ nav li a {
   }
 }
 .authForm {
-  width: 100%;
   animation-duration: 600ms;
   animation-name: slidein;
   animation-timing-function: ease-in-out;
@@ -143,18 +144,23 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
 
 h1 {
-  padding-top: 5em;
   font-size: clamp(1rem, 5vw, 3rem);
 }
 
 h2 {
-  margin-top: 2em;
   padding: 1em 0 1em 0;
 }
 

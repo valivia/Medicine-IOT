@@ -1,13 +1,13 @@
-.authWrapper,
-.authMain {
+.authWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-}
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
 
-.authMain {
-    width: min(80%, 60ch);
+    padding-bottom: 20vh;
 }
 
 /* Form  */
@@ -24,7 +24,6 @@
 }
 
 .authForm {
-    width: 100%;
     animation-duration: 600ms;
     animation-name: slidein;
     animation-timing-function: ease-in-out;

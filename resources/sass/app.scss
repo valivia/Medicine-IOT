@@ -25,18 +25,23 @@ html {
     font-family: $font-family;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
 * {
     box-sizing: border-box;
     font-family: $font-family;
 }
 
 h1 {
-    padding-top: 5em;
     font-size: clamp(1rem, 5vw, 3rem);
 }
 
 h2 {
-    margin-top: 2em;
     padding: 1em 0 1em 0;
 }
 
