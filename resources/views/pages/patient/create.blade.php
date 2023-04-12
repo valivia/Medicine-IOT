@@ -5,24 +5,40 @@
     <form class="form" method="POST">
         <h2>Create Patient</h2>
 
-        <section class="formSection">
-            <label for="firstname">First Name</label>
-            <input placeholder="First Name" type="text" id="firstname" name="firstname">
-        </section>
 
-        <section class="formSection">
-            <label for="lastname">Last Name</label>
-            <input placeholder="Last Name" type="text" id="lastname" name="lastname">
-        </section>
+        @include('partials/input', [
+            'name' => 'first_name',
+            'label' => 'First Name',
+            'placeholder' => 'E.g. John',
+            'value' => old('first_name'),
+            'required' => true,
+        ])
 
-        <section class="formSection">
-            <label for="birthday">Birthday</label>
-            <input placeholder="Birthday" type="text" id="birthday" name="birthday">
-        </section>
+        @include('partials/input', [
+            'name' => 'last_name',
+            'label' => 'Last Name',
+            'placeholder' => 'E.g. Doe',
+            'value' => old('last_name'),
+            'required' => true,
+        ])
 
-        <section class="formSection">
-            <label for="address">Address</label>
-            <input placeholder="Address" type="text" id="address" name="address">
-        </section>
+
+        @include('partials/input', [
+            'name' => 'birthday',
+            'label' => 'Birthday',
+            'placeholder' => 'E.g. 01-01-2000',
+            'value' => old('birthday'),
+            'required' => true,
+        ])
+
+
+        @include('partials/input', [
+            'name' => 'address',
+            'label' => 'Address',
+            'placeholder' => 'E.g. 1234 Street',
+            'value' => old('address'),
+            'required' => true,
+        ])
+
     </form>
 @endsection
