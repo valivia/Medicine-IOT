@@ -22,8 +22,6 @@ int buttonState = 0;
 int pos = 0;
 
 void buttonPressed(){
-  
- 
   // Servo
   for (pos = 0; pos <= 90; pos += 1) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
