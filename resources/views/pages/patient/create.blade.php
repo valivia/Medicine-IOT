@@ -3,26 +3,49 @@
 
 @section('content')
     <form class="form" method="POST">
+        @method('POST')
+        @csrf
+
         <h2>Create Patient</h2>
 
+        {{-- First name --}}
         <section class="formSection">
-            <label for="firstname">First Name</label>
-            <input placeholder="First Name" type="text" id="firstname" name="firstname">
+            <label for="first_name">First Name</label>
+            <input placeholder="First Name" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+                required>
+            @error('first_name')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </section>
 
+        {{-- Last name --}}
         <section class="formSection">
-            <label for="lastname">Last Name</label>
-            <input placeholder="Last Name" type="text" id="lastname" name="lastname">
+            <label for="last_name">Last Name</label>
+            <input placeholder="Last Name" type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
+                required>
+            @error('last_name')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </section>
 
+        {{-- Birthday --}}
         <section class="formSection">
             <label for="birthday">Birthday</label>
-            <input placeholder="Birthday" type="text" id="birthday" name="birthday">
+            <input placeholder="Birthday" type="date" id="birthday" name="birthday" value="{{ old('birthday') }}"
+                required>
+            @error('birthday')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </section>
 
+        {{-- Address --}}
         <section class="formSection">
             <label for="address">Address</label>
-            <input placeholder="Address" type="text" id="address" name="address">
+            <input placeholder="Address" type="text" id="address" name="address" value="{{ old('address') }}" required>
+            @error('address')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </section>
+
     </form>
 @endsection
