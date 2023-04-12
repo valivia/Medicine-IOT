@@ -19,8 +19,9 @@ class PatientController extends Controller
     // Show list all patients of user
     public function index()
     {
-        // fetch user -> patients with that user id
+        $patients = Patient::where('user_id', auth()->user()->id)->get();
 
+        return view('pages/patient/index', ["patients" => $patients]);
     }
 
     // return view
@@ -58,6 +59,9 @@ class PatientController extends Controller
     {
         $formFields = $request->validate($this->validation);
 
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
         $patient->update($formFields);
 
         return redirect('/patient/' . $patient->id);
@@ -66,6 +70,11 @@ class PatientController extends Controller
     // delete patient
     public function destroy($patient)
     {
-        //
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $patient->delete();
+
+        return redirect('/patient');
     }
 }
