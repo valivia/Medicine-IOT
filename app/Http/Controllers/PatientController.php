@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
+
+    private $validation = [
+        'first_name' => ['required', 'min:2'],
+        'last_name' => ['required', 'min:2'],
+        'address' => ['required'],
+        'birthday' => ['required']
+    ];
+
     // Show list all patients of user
     public function index()
     {
         // fetch user -> patients with that user id
-        
+
     }
 
     // return view
@@ -24,12 +32,7 @@ class PatientController extends Controller
     // post request. validate form and put in db with user id
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'first_name' => ['required', 'min:2'],
-            'last_name' => ['required', 'min:2'],
-            'address' => ['required'],
-            'birthday' => ['required']
-        ]);
+        $formFields = $request->validate($this->validation);
 
         $formFields["user_id"] = auth()->user()->id;
 
@@ -41,22 +44,23 @@ class PatientController extends Controller
     // single patient. return view 'pages/patient/show'
     public function show(Patient $patient)
     {
-        // dd($patient);
-        return view("pages/patient/show", [
-            "patient" => $patient
-        ]);
+        return view("pages/patient/show", ["patient" => $patient]);
     }
 
     // return view
     public function edit($patient)
     {
-        //
+        return view('pages/patient/edit', ["patient" => $patient]);
     }
 
     // put request
     public function update(Request $request, $patient)
     {
-        //
+        $formFields = $request->validate($this->validation);
+
+        $patient->update($formFields);
+
+        return redirect('/patient/' . $patient->id);
     }
 
     // delete patient
