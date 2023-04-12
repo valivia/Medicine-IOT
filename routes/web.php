@@ -5,6 +5,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TimeslotController;
 use App\Http\Controllers\MedicationController;
+use App\Http\Controllers\DeviceController;
 
 
 /*
@@ -28,3 +29,9 @@ Route::resource("/user", UserController::class)->middleware("auth");
 Route::resource("/patient", PatientController::class)->middleware("auth");
 Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
 Route::resource("/medication", MedicationController::class)->middleware("auth");
+
+// ping every 5 seconds to see if should be ready to open
+Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"]);
+
+// pings when the caretaker refills the box.
+Route::get("/device/{id}/reset", [DeviceController::class, "reset"]);
