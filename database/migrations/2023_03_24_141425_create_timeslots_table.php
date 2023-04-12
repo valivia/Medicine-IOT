@@ -17,8 +17,12 @@ class CreateTimeslotsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('time', 5);
+            $table->integer('hour');
+            $table->integer('minute');
             $table->integer('day');
+
+            $table->boolean('received')->default(false);
+            $table->boolean('failed')->default(false);
 
             $table->foreignId('patient_id')->constrained();
             $table->foreignId('medication_id')->constrained();
