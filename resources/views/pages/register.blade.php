@@ -14,7 +14,7 @@
                 <div id="reg1" class="form authForm" style="display: flex;">
                     <section class="formSection">
                         <label for="email">Email adres</label>
-                        <input placeholder="Email adres" type="text" id="email" name="email">
+                        <input placeholder="Email adres" type="text" id="email" name="email" value="{{old('email')}}">
                         @error('email')
                             <p class="error">{{ $message }}</p>
                         @enderror
@@ -22,7 +22,7 @@
 
                     <section class="formSection">
                         <label for="password">Wachtwoord</label>
-                        <input placeholder="Wachtwoord123..." type="text" id="password" name="password">
+                        <input placeholder="Wachtwoord123..." type="password" id="password" name="password" value="{{old('password')}}">
                         @error('password')
                             <p class="error">{{ $message }}</p>
                         @enderror
@@ -30,8 +30,8 @@
 
                     <section class="formSection">
                         <label for="password_confirmation">Wachtwoord herhalen</label>
-                        <input placeholder="wachtwoord123..." type="text" id="password_confirmation"
-                            name="password_confirmation">
+                        <input placeholder="wachtwoord123..." type="password" id="password_confirmation"
+                            name="password_confirmation" value="{{old('password_confirmation')}}">
                         @error('password_confirmation')
                             <p class="error">{{ $message }}</p>
                         @enderror
@@ -50,14 +50,14 @@
                     <section class="formHorizontal">
 
                         <section class="formSection">
-                            <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;">
+                            <input placeholder="Voornaam" type="text" name="first_name" style="flex-grow: 1;" value="{{old('first_name')}}">
                             @error('first_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </section>
 
                         <section class="formSection">
-                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;">
+                            <input placeholder="Achternaam" type="text" name="last_name" style="flex-grow: 3;" value="{{old('last_name')}}">
                             @error('last_name')
                                 <p class="error">{{ $message }}</p>
                             @enderror

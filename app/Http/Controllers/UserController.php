@@ -60,8 +60,17 @@ class UserController extends Controller
         return view("pages/register");
     }
 
-    public function login()
+    public function login(Request $request)
     {
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+        if(auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+
+            return redirect('/user/');
+        }
     }
 
     public function register(Request $request)

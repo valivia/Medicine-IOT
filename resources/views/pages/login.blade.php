@@ -11,12 +11,18 @@
 
                 <section class="formSection">
                     <label for="email">Email</label>
-                    <input placeholder="Email adres" type="text" id="email" name="email">
+                    <input placeholder="Email adres" type="text" id="email" name="email" value="{{old('email')}}">
+                    @error('email')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                 </section>
 
                 <section class="formSection">
                     <label for="wachtwoord">Wachtwoord</label>
-                    <input placeholder="Wachtwoord" type="text" id="wachtwoord" name="wachtwoord">
+                    <input placeholder="Wachtwoord" type="password" id="wachtwoord" name="password" value="{{old('password')}}">
+                    @error('password')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                 </section>
 
                 <section class="authButtons">
