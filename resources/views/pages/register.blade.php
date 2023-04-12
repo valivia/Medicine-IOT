@@ -67,7 +67,7 @@
 
                     <section class="formSection">
                         <label for="dob">Geboortedatum</label>
-                        <input placeholder="14-7-1992" type="date" id="dob" name="dob"  value="{{old('dob')}}>
+                        <input placeholder="14-7-1992" type="date" id="dob" name="dob"  value="{{old('dob')}}">
                         @error('dob')
                             <p class="error">{{ $message }}</p>
                         @enderror
