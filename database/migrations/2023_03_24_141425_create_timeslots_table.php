@@ -21,6 +21,8 @@ class CreateTimeslotsTable extends Migration
             $table->integer('minute');
             $table->integer('day');
 
+            $table->string('dosage');
+
             $table->boolean('received')->default(false);
             $table->boolean('failed')->default(false);
 

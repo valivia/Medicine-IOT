@@ -15,6 +15,7 @@ class Timeslot extends Model
     protected $fillable = [
         'patient_id',
         'medication_id',
+        'dosage',
         'hour',
         'minute',
         'day',

@@ -19,7 +19,6 @@ class CreateMedicationsTable extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->string('dosage');
 
             $table->foreignId('patient_id')->constrained();
         });
