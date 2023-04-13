@@ -1,18 +1,24 @@
-<article
-    class="card"
-    @isset($big) data-variant="big" @endisset
->
+<article class="card" @isset($big) data-variant="big" @endisset>
 
     {{-- Displayed info --}}
-    <a @isset($route) href={{ $route }} @endisset class="cardInfo">
-        <header>
-            <h3>{{ $title }}</h3>
-        </header>
+    @isset($route)
+        <a href={{ $route }} class="cardInfo">
+        @else
+            <div class="cardInfo">
+            @endisset
+            <header>
+                <h3>{{ $title }}</h3>
+            </header>
 
-        <main>
-            {{ $slot }}
-        </main>
-    </a>
+            <main>
+                {{ $slot }}
+            </main>
+
+            @isset($route)
+        </a>
+    @else
+        </div>
+    @endisset
 
     {{-- Interactivity --}}
     <div class="cardInteractions">

@@ -1,11 +1,6 @@
 <x-layout>
 
-    <section>
-        <a class="button" href="{{ route('patient.show', $patient) }}">devices</a>
-        <a class="button" href="{{ route('patient.medication.index', $patient) }}">medication</a>
-        <a class="button" href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
-    </section>
-
+    <x-profile :patient="$patient" route="timeslot" />
 
     <x-cardlist title="Timeslots" createRoute="{{ route('patient.timeslot.create', $patient) }}">
         @foreach ($timeslots as $timeslot)

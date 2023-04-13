@@ -14,12 +14,11 @@
 
     border: 6px solid $secondary;
 
-
     &[data-variant="big"] {
-        width: 100%;
-        
+        width: min(100%, 50rem);
+
         @include medium() {
-            background: linear-gradient(-30deg, transparent 30%, $secondary 30%);
+            background: $secondary;
         }
     }
 }

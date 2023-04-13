@@ -1,6 +1,12 @@
 .buttons {
     display: flex;
-    gap: 1rem;   
+    gap: 1rem;
+    padding: 1rem;
+    background-color: $primary;
+    border-radius: 100vmin;
+
+    margin-top: 1rem;
+    margin-bottom: -2.3rem;
 }
 
 .button {
