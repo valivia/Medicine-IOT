@@ -1,14 +1,14 @@
-.patients {
+.cardlist {
     width: min(100%, 50rem);
 }
-.patientsHeader {
+.cardlistHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-.patientsMain {
+.cardlistMain {
     display: flex;
     flex-direction: column;
     align-items: stretch;

@@ -52,6 +52,12 @@
             'required' => true,
         ])
 
+        @if (session('error'))
+            <div class="error">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <button class="button" type="submit" data-variant="primary">
             Create Patient
         </button>

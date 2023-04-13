@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PatientController extends Controller
 {
@@ -40,13 +41,12 @@ class PatientController extends Controller
 
         $patient = Patient::create($formFields);
 
-        return redirect('/patient/' . $patient->id);
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
-    // single patient. return view 'pages/patient/show'
     public function show(Patient $patient)
     {
-        return view("pages/patient/show", compact("patient"));
+        return view('pages/patient/show', compact("patient"));
     }
 
     // return view
@@ -58,14 +58,17 @@ class PatientController extends Controller
     // put request
     public function update(Request $request, Patient $patient)
     {
-        $formFields = $request->validate($this->validation);
+        $validation = $this->validation;
+        $validation['device_id'] = ['required', Rule::unique('patients', 'device_id')->ignore($patient->id)];
+
+        $formFields = $request->validate($validation);
 
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
         $patient->update($formFields);
 
-        return redirect('/patient/' . $patient->id);
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     // delete patient

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Timeslot extends Model
 {
@@ -14,7 +15,6 @@ class Timeslot extends Model
 
     protected $fillable = [
         'patient_id',
-        'medication_id',
         'hour',
         'minute',
         'day',
@@ -27,8 +27,8 @@ class Timeslot extends Model
         return $this->belongsTo(Patient::class);
     }
 
-    public function medication(): BelongsTo
+    public function medications(): BelongsToMany
     {
-        return $this->belongsTo(Medication::class);
+        return $this->belongsToMany(Medication::class);
     }
 }

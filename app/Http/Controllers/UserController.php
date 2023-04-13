@@ -99,4 +99,14 @@ class UserController extends Controller
 
         return redirect('/user/' . $user->id);
     }
+
+    public function logout(Request $request) {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+
+    }
 }

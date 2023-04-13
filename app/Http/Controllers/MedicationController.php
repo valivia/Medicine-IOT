@@ -2,83 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Patient;
 use Illuminate\View\View;
+use App\Models\Medication;
+use Illuminate\Http\Request;
 
 class MedicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    private $validation = [
+        'name' => ['required'],
+        'description' => [],
+    ];
+
+
+    public function index(Patient $patient)
     {
-        //
+        $medications = Medication::where('patient_id', $patient->id)->get();
+
+        return view('pages/medication/index', compact(["medications", "patient"]));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create(): View
+    public function create(Patient $patient): View
     {
-        return view('pages/medication/create');
+        return view('pages/medication/create', compact("patient"));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Patient $patient)
     {
-        //
+        $formFields = $request->validate($this->validation);
+        $formFields["patient_id"] = $patient->id;
+        $medication = Medication::create($formFields);
+        $medication->save();
+
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient, Medication $medication)
     {
-        //
+        return view('pages/medication/show', compact("medication"));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient, Medication $medication)
     {
-        //
+        return view('pages/medication/edit', compact(["medication", "patient"]));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient, Medication $medication)
     {
-        //
+        $formFields = $request->validate($this->validation);
+
+        $medication->update($formFields);
+
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient, Medication $medication)
     {
         //
     }

@@ -25,7 +25,6 @@ class CreateTimeslotsTable extends Migration
             $table->boolean('failed')->default(false);
 
             $table->foreignId('patient_id')->constrained();
-            $table->foreignId('medication_id')->constrained();
         });
     }
 

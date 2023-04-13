@@ -34,18 +34,27 @@
 
 .iconButton {
     border-radius: 100%;
-    padding: 0.9rem;
-    background-color: $primary;
-    border: none;
-    color: $text;
-    cursor: pointer;
     border: 2px solid currentColor;
+
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primary;
+    color: $text;
+
+    cursor: pointer;
 
     transition: all 0.1s ease-in-out;
 
     & svg {
         transform: scale(1);
         transition: all 0.1s ease-in-out;
+        width: 1.1rem;
+        height: 1.1rem;
     }
 
     &:active svg {

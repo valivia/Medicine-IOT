@@ -22,13 +22,15 @@ use App\Http\Controllers\DeviceController;
 Route::get("/login", [UserController::class, "loginIndex"])->name("login");
 Route::post("/login", [UserController::class, "login"]);
 
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
+
 Route::get("/register", [UserController::class, "registerIndex"])->name("register");
 Route::post("/register", [UserController::class, "register"]);
 
 Route::resource("/user", UserController::class)->middleware("auth");
 Route::resource("/patient", PatientController::class)->middleware("auth");
-Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
-Route::resource("/medication", MedicationController::class)->middleware("auth");
+Route::resource("patient.timeslot", TimeslotController::class)->middleware("auth");
+Route::resource("patient.medication", MedicationController::class)->middleware("auth");
 
 // ping every 5 seconds to see if should be ready to open
 Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"]);
