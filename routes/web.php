@@ -27,8 +27,8 @@ Route::post("/register", [UserController::class, "register"]);
 
 Route::resource("/user", UserController::class)->middleware("auth");
 Route::resource("/patient", PatientController::class)->middleware("auth");
-Route::resource("/timeslot", TimeslotController::class)->middleware("auth");
-Route::resource("/medication", MedicationController::class)->middleware("auth");
+Route::resource("patient.timeslot", TimeslotController::class)->middleware("auth");
+Route::resource("patient.medication", MedicationController::class)->middleware("auth");
 
 // ping every 5 seconds to see if should be ready to open
 Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"]);
