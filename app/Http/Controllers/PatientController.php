@@ -14,7 +14,7 @@ class PatientController extends Controller
         'last_name' => ['required', 'min:2'],
         'address' => ['required'],
         'birthday' => ['required'],
-        'device_id' => ['required'],
+        'device_id' => ['required', 'unique:patients'],
     ];
 
     // Show list all patients of user
