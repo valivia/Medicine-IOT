@@ -23,6 +23,7 @@
                 @include('partials/input', [
                     'name' => 'password',
                     'label' => 'password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password'),
                     'required' => true,
@@ -32,6 +33,7 @@
                 @include('partials/input', [
                     'name' => 'password_confirmation',
                     'label' => 'repeat password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password_confirmation'),
                     'required' => true,
