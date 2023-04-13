@@ -33,6 +33,29 @@ class TimeslotController extends Controller
 
         $request->validate($this->validation);
 
+        $currentTimeslots = $patient->timeslots()->get();
+
+        // check if reached limit.
+        if ($currentTimeslots->count() >= 14) {
+            return redirect(route('patient.timeslot.create', $patient))->with('error', 'Your device only supports 14 timeslots');
+        }
+
+        foreach ($currentTimeslots as $currentTimeslot) {
+            $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
+            $endTime = strtotime('+1 hour', $startTime);
+
+            $newStartTime = strtotime($request->day . ' ' . $request->hour . ':' . $request->minute . ':00');
+            $newEndTime = strtotime('+1 hour', $newStartTime);
+
+            $overlap = max(0, min($endTime, $newEndTime) - max($startTime, $newStartTime)) / 60; // calculate overlap in minutes
+
+            if ($overlap >= 60) {
+                return redirect(route('patient.timeslot.create', $patient))->with('error', 'Timeslot overlaps with existing timeslot');
+            }
+        }
+
+
+
         $timeslot = new Timeslot($request->all());
         $timeslot->patient()->associate($patient);
         $timeslot->save();
