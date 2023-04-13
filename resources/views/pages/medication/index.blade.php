@@ -5,7 +5,6 @@
         <header class="patientsHeader">
             <h1>Patient</h1>
         </header>
-        <a class="button" data-variant="primary" href="{{ route('patient.index') }}">Back</a>
         <div class="patientsMain">
         </div>
     </div>
