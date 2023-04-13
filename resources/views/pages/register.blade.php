@@ -23,6 +23,7 @@
                 @include('partials/input', [
                     'name' => 'password',
                     'label' => 'password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password'),
                     'required' => true,
@@ -32,6 +33,7 @@
                 @include('partials/input', [
                     'name' => 'password_confirmation',
                     'label' => 'repeat password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password_confirmation'),
                     'required' => true,
@@ -80,7 +82,7 @@
 
                 <section class="authButtons">
                     <button class="button" data-variant="secondary" onclick="toggle()">Back</button>
-                    <button class="button" data-variant="primary" type="submit" onclick="">Registrer</button>
+                    <button class="button" data-variant="primary" type="submit" onclick="">Register</button>
                 </section>
             </div>
 

@@ -19,6 +19,7 @@
             @include('partials/input', [
                 'name' => 'password',
                 'label' => 'Password',
+                'type' => 'password',
                 'placeholder' => 'E.g. HKJFhs7fs&*',
                 'value' => old('password'),
                 'required' => true,
