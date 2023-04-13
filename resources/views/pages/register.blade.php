@@ -80,7 +80,7 @@
 
                 <section class="authButtons">
                     <button class="button" data-variant="secondary" onclick="toggle()">Back</button>
-                    <button class="button" data-variant="primary" type="submit" onclick="">Registrer</button>
+                    <button class="button" data-variant="primary" type="submit" onclick="">Register</button>
                 </section>
             </div>
 
