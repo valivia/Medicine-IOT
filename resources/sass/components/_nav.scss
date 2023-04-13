@@ -2,26 +2,32 @@ nav {
     position: fixed;
     bottom: 0;
     left: 0;
+    background: $secondary;
+    width: 100%;
 
     @include medium() {
         top: 0;
         bottom: unset;
+        padding-right: 10rem;
+        width: auto;
+        background: linear-gradient(-70deg, transparent 8rem, $secondary 8rem);
     }
 
-    width: 100%;
-
-    background: $secondary;
-
     ul {
-        width: min(100%, 70ch);
+        width: 100%;
         display: flex;
         justify-content: space-between;
+        gap: 1rem;
+
+        @include medium() {
+            justify-content: flex-start;
+        }
 
         list-style: none;
 
         margin: 0;
         padding: 0;
-        padding-inline: 2rem;
+        padding-inline: 1rem;
     }
 }
 
@@ -31,7 +37,7 @@ nav li {
     padding-block: 0.1em 1em;
 
     @include medium() {
-        padding-block: 0.5em 0.1em;
+        padding-block: 0.3em 0.3em;
     }
 
     &:hover {

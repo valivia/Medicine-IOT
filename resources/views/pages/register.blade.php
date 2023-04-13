@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="authWrapper">
-        <h1>ACCOUNT GEGEVENS</h1>
+        <h1>Register</h1>
 
         <form class="form" method="post">
             @method('POST')
@@ -13,7 +13,7 @@
 
                 @include('partials/input', [
                     'name' => 'email',
-                    'label' => 'Email address',
+                    'label' => 'Email',
                     'placeholder' => 'E.g. John@gmail.com',
                     'value' => old('email'),
                     'required' => true,
@@ -23,6 +23,7 @@
                 @include('partials/input', [
                     'name' => 'password',
                     'label' => 'password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password'),
                     'required' => true,
@@ -32,6 +33,7 @@
                 @include('partials/input', [
                     'name' => 'password_confirmation',
                     'label' => 'repeat password',
+                    'type' => 'password',
                     'placeholder' => 'E.g. HKJFhs7fs&*',
                     'value' => old('password_confirmation'),
                     'required' => true,
@@ -39,14 +41,13 @@
 
 
                 <section class="authButtons">
-                    <a class="button" data-variant="secondary" href="/login">Terug</a>
-                    <button class="button" data-variant="primary" type="button" onclick="toggle()">Volgende</button>
+                    <a class="button" data-variant="secondary" href="/login">Back</a>
+                    <button class="button" data-variant="primary" type="button" onclick="toggle()">Next</button>
                 </section>
             </div>
 
             {{-- Part 2 --}}
             <div id="reg2" class="form authForm" style="display: none;">
-                <label for="name">Naam</label>
 
                 <section class="formHorizontal">
 
@@ -73,14 +74,15 @@
                 @include('partials/input', [
                     'name' => 'dob',
                     'label' => 'Date of birth',
+                    'type' => 'date',
                     'placeholder' => 'E.g. 14-7-1992',
                     'value' => old('dob'),
                     'required' => true,
                 ])
 
                 <section class="authButtons">
-                    <button class="button" data-variant="secondary" onclick="toggle()">Terug</button>
-                    <button class="button" data-variant="primary" type="submit" onclick="">Registreer</button>
+                    <button class="button" data-variant="secondary" onclick="toggle()">Back</button>
+                    <button class="button" data-variant="primary" type="submit" onclick="">Register</button>
                 </section>
             </div>
 

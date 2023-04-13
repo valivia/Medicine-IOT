@@ -1,0 +1,40 @@
+.card {
+    background: $secondary;
+    border-radius: $border-radius;
+
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    padding: 1.5rem 1rem 1rem 1.8rem;
+
+    background: $secondary;
+
+    @include medium() {
+        background: linear-gradient(-60deg, transparent 30%, $secondary 30%);
+    }
+
+    border: 6px solid $secondary;
+}
+
+.cardInfo {
+    & header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & main {
+        padding-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & p {
+            margin: 0;
+        }
+    }
+}
+
+.cardInteractions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

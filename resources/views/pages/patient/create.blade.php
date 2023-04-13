@@ -1,9 +1,12 @@
 @extends('index')
-@include('partials.nav')
 
 @section('content')
-    <form class="form" method="POST">
-        <h2>Create Patient</h2>
+    @include('partials.nav')
+    <h1>Create Patient</h1>
+
+    <form class="form" method="POST" action="{{ route('patient.store') }}">
+        @method('POST')
+        @csrf
 
 
         @include('partials/input', [
@@ -26,6 +29,7 @@
         @include('partials/input', [
             'name' => 'birthday',
             'label' => 'Birthday',
+            'type' => 'date',
             'placeholder' => 'E.g. 01-01-2000',
             'value' => old('birthday'),
             'required' => true,
@@ -39,6 +43,18 @@
             'value' => old('address'),
             'required' => true,
         ])
+
+        @include('partials/input', [
+            'name' => 'device_id',
+            'label' => 'Device ID',
+            'placeholder' => 'E.g. 123456789',
+            'value' => old('device_id'),
+            'required' => true,
+        ])
+
+        <button class="button" type="submit" data-variant="primary">
+            Create Patient
+        </button>
 
     </form>
 @endsection

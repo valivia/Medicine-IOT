@@ -1,24 +1,61 @@
 .button {
-    border: 3px solid $accent;
-    border-radius: $border-radius;
-    padding: 0.5em;
-    margin: 0 0.5em;
+    border: none;
+    border-radius: 100vmax;
+
+    padding: 0.7em;
     flex-grow: 1;
+
     text-decoration: none;
     text-align: center;
     font-size: 1rem;
+
+    cursor: pointer;
+
     color: $text;
 
-    &:hover {
-        cursor: pointer;
-    }
+    outline: 2px solid $secondary;
 
     &[data-variant="primary"] {
-        background-color: $accent;
+        background: $secondary;
     }
 
     &[data-variant="secondary"] {
-        background-color: transparent;
-        color: $accent;
+        background: transparent;
+    }
+
+    transition: transform 150ms ease-in-out, outline 250ms ease-in-out;
+
+    transform: translateY(0);
+    &:hover {
+        transform: translateY(-0.15em);
+        outline: 4px solid rgba($text, 0.8);
+    }
+}
+
+.iconButton {
+    border-radius: 100%;
+    padding: 0.9rem;
+    background-color: $primary;
+    border: none;
+    color: $text;
+    cursor: pointer;
+    border: 2px solid currentColor;
+
+    transition: all 0.1s ease-in-out;
+
+    & svg {
+        transform: scale(1);
+        transition: all 0.1s ease-in-out;
+    }
+
+    &:active svg {
+        transform: scale(0.9);
+    }
+
+    &:hover {
+        background-color: $secondary;
+        & svg {
+            transform: scale(1.2);
+        }
     }
 }
