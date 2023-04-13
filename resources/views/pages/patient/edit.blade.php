@@ -8,6 +8,8 @@
 
         <h2>Edit Patient</h2>
 
+        {{-- <a class="button" data-variant="primary" href="{{ route('patient.index') }}">Back</a> --}}
+
         @include('partials/input', [
             'name' => 'first_name',
             'label' => 'First Name',

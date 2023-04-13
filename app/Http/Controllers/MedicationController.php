@@ -41,7 +41,8 @@ class MedicationController extends Controller
         $medication = Medication::create($formFields);
         $medication->save();
 
-        return redirect()->back();
+        // return redirect()->back();
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     /**
@@ -57,6 +58,7 @@ class MedicationController extends Controller
      */
     public function edit(Patient $patient, Medication $medication)
     {
+        return view('pages/medication/edit', compact(["medication", "patient"]));
     }
 
     /**

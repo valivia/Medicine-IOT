@@ -26,16 +26,6 @@
         ])
 
 
-        {{-- @include('partials/input', [
-            'name' => 'dosage',
-            'label' => 'Dosage',
-            'type' => 'text',
-            'placeholder' => '200 mg',
-            'value' => old('dosage'),
-            'required' => true,
-        ]) --}}
-
-
         <button class="button" type="submit" data-variant="primary">
             Add Medication
         </button>

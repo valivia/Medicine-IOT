@@ -5,9 +5,11 @@
         <header class="patientsHeader">
             <h1>Patient</h1>
         </header>
+        <a class="button" data-variant="primary" href="{{ route('patient.index') }}">Back</a>
         <div class="patientsMain">
         </div>
     </div>
+
 
     <x-card title="{{ $patient->first_name . ' ' . $patient->last_name }}" route="{{ route('patient.show', $patient) }}"
         editRoute="{{ route('patient.edit', $patient) }}" deleteRoute="{{ route('patient.destroy', $patient) }}">
