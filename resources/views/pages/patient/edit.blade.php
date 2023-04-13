@@ -1,12 +1,7 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-    @include('partials.nav')
-    <form class="form" method="POST" action="{{ route('patient.update', $patient) }}">
-        @method('PUT')
-        @csrf
-
-        <h2>Edit Patient</h2>
+    <x-form title="Patient" route="{{ route('patient.update', $patient) }}" method="PUT">
+   <h2>Edit Patient</h2>
 
         @include('partials/input', [
             'name' => 'first_name',
@@ -50,16 +45,6 @@
             'value' => old('device_id') ?? $patient->device_id,
             'required' => true,
         ])
+    </x-form>
 
-        @if (session('error'))
-            <div class="error">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <button class="button" type="submit" data-variant="primary">
-            Edit Patient
-        </button>
-
-    </form>
-@endsection
+</x-layout>

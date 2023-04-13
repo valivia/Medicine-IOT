@@ -1,14 +1,6 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-    @include('partials.nav')
-    <h1>Edit Medication</h1>
-
-    <form class="form" method="POST" action='{{ route('patient.medication.update', compact(["medication", "patient"]) ) }}'>
-        @method('PUT')
-        @csrf
-
-
+    <x-form title="Medication" route="{{ route('patient.medication.update', [$patient, $medication]) }}" method="PUT">
         @include('partials/input', [
             'name' => 'name',
             'label' => 'Name',
@@ -24,11 +16,6 @@
             'value' => old('description') ?? $medication->description,
             'required' => false,
         ])
+    </x-form>
 
-
-        <button class="button" type="submit" data-variant="primary">
-            Edit Medication
-        </button>
-
-    </form>
-@endsection
+</x-layout>
