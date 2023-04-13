@@ -22,6 +22,8 @@ use App\Http\Controllers\DeviceController;
 Route::get("/login", [UserController::class, "loginIndex"])->name("login");
 Route::post("/login", [UserController::class, "login"]);
 
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
+
 Route::get("/register", [UserController::class, "registerIndex"])->name("register");
 Route::post("/register", [UserController::class, "register"]);
 
