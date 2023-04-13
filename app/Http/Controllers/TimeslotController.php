@@ -2,83 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
+use App\Models\Timeslot;
 use Illuminate\Http\Request;
 
 class TimeslotController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
+    private $validation = [
+        'hour' => 'required|integer|min:0|max:23',
+        'minute' => 'required|integer|min:0|max:59',
+        'day' => 'required|integer|min:0|max:6',
+    ];
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Patient $patient)
     {
-        //
+        return view('pages/timeslot/create', compact('patient'));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Patient $patient)
     {
-        //
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $request->validate($this->validation);
+
+        $timeslot = new Timeslot($request->all());
+        $timeslot->patient()->associate($patient);
+        $timeslot->save();
+
+        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient, Timeslot $timeslot)
     {
-        //
+        return view('pages/timeslot/show', compact('timeslot'));
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient, Timeslot $timeslot)
     {
-        //
+        return view('pages/timeslot/edit', compact('timeslot'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient, Timeslot $timeslot)
     {
-        //
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $request->validate($this->validation);
+
+        $timeslot->update($request->all());
+
+        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient, Timeslot $timeslot)
     {
-        //
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $timeslot->delete();
+
+        return redirect('/patient');
     }
 }
