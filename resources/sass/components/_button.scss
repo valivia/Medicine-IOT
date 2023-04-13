@@ -1,24 +1,34 @@
 .button {
-    border: 3px solid $accent;
+    border: none;
     border-radius: 100vmax;
-    padding: 0.5em;
+
+    padding: 0.7em;
     flex-grow: 1;
+
     text-decoration: none;
     text-align: center;
     font-size: 1rem;
+
+    cursor: pointer;
+
     color: $text;
 
-    &:hover {
-        cursor: pointer;
-    }
+    outline: 2px solid $secondary;
 
     &[data-variant="primary"] {
-        background-color: $accent;
+        background: $secondary;
     }
 
     &[data-variant="secondary"] {
-        background-color: transparent;
-        color: $accent;
+        background: transparent;
+    }
+
+    transition: transform 150ms ease-in-out, outline 250ms ease-in-out;
+
+    transform: translateY(0);
+    &:hover {
+        transform: translateY(-0.15em);
+        outline: 4px solid rgba($text, 0.8);
     }
 }
 

@@ -17,6 +17,7 @@ nav {
         width: 100%;
         display: flex;
         justify-content: space-between;
+        gap: 1rem;
 
         @include medium() {
             justify-content: flex-start;
@@ -36,7 +37,7 @@ nav li {
     padding-block: 0.1em 1em;
 
     @include medium() {
-        padding-block: 0.5em 0.1em;
+        padding-block: 0.3em 0.3em;
     }
 
     &:hover {

@@ -52,8 +52,9 @@
             'required' => true,
         ])
 
-        <input class="button" type="submit" value="Create Patient">
-
+        <button class="button" type="submit" data-variant="primary">
+            Create Patient
+        </button>
 
     </form>
 @endsection

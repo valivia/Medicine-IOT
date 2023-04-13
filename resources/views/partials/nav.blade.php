@@ -1,7 +1,7 @@
 <nav>
     <ul>
-        <li><a class="material-icons" href="/search">Search</a></li>
-        <li><a class="material-icons" href="/">Home</a></li>
-        <li><a class="material-icons" href="/">Person</a></li>
+        <li><a href="{{ route('login') }}">Home</a></li>
+        <li><a href="{{ route('patient.index') }}">Patients</a></li>
+        <li><a href="{{ route('user.show', auth()->user()) }}">Profile</a></li>
     </ul>
 </nav>
