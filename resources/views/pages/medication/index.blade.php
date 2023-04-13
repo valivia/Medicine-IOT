@@ -24,12 +24,16 @@
                 @include('partials/icons/add')
             </a>
         </header>
+        <section>
+            <a class="button" href="{{ route('patient.show', $patient) }}">devices</a>
+            <a class="button" href="{{ route('patient.medication.index', $patient) }}">medication</a>
+            <a class="button" href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
+        </section>
         <div class="patienstMain">
             @foreach ($medications as $medication)
                 <x-card title="{{ $medication->name }}" editRoute="{{ route('patient.medication.edit', compact(['patient', 'medication'])) }}"
                     deleteRoute="{{ route('patient.medication.destroy', compact(['patient', 'medication'])) }}">
                     <p>@include('partials/icons/location') {{ $medication->description }}</p>
-                    <p>@include('partials/icons/cake') {{ date('d-m-Y', strtotime($patient->birthday)) }}</p>
                 </x-card>
             @endforeach
         </div>

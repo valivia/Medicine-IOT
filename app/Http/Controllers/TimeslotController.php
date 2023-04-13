@@ -15,6 +15,13 @@ class TimeslotController extends Controller
         'day' => 'required|integer|min:0|max:6',
     ];
 
+    public function index(Patient $patient)
+    {
+        $timeslots = Timeslot::where('patient_id', $patient->id)->get();
+
+        return view('pages/timeslot/index', compact(["timeslots", "patient"]));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

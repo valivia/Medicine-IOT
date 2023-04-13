@@ -43,6 +43,11 @@ class PatientController extends Controller
         return redirect(route('patient.medication.index', $patient->id));
     }
 
+    public function show(Patient $patient)
+    {
+        return view('pages/patient/show', compact("patient"));
+    }
+
     // return view
     public function edit(Patient $patient)
     {
