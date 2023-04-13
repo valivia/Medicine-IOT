@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Medication;
+use Illuminate\Http\Request;
 
 class MedicationController extends Controller
 {
-
+    
+    private $validation = [
+        'name' => ['required'],
+        'description',
+        
+    ];
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +32,11 @@ class MedicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate($this->validation);
+
+        $medication = Medication::create($formFields);
+
+        return redirect()->back();
     }
 
     /**

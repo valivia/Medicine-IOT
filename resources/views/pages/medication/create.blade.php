@@ -1,28 +1,44 @@
 @extends('index')
 
 @section('content')
+    @include('partials.nav')
+    <h1>Add Medication</h1>
+
     <form class="form" method="POST" action="{{ route('medication.store') }}">
-        <h2>Create Medication</h2>
+        @method('POST')
+        @csrf
 
-        <section class="formSection">
-            <label for="name">Name</label>
-            <input placeholder="Name" type="text" id="name" name="name">
-        </section>
 
-        <section class="formSection">
-            <label for="description">Description</label>
-            <input placeholder="Description" type="text" id="description" name="description">
-        </section>
+        @include('partials/input', [
+            'name' => 'name',
+            'label' => 'Name',
+            'placeholder' => 'Paracetamol',
+            'value' => old('name'),
+            'required' => true,
+        ])
 
-        <section class="formSection">
-            <label for="dosage">Dosage</label>
-            <input placeholder="Dosage" type="text" id="dosage" name="dosage">
-        </section>
+        @include('partials/input', [
+            'name' => 'description',
+            'label' => 'Description',
+            'placeholder' => 'Description',
+            'value' => old('description'),
+            'required' => false,
+        ])
+
+
+        {{-- @include('partials/input', [
+            'name' => 'dosage',
+            'label' => 'Dosage',
+            'type' => 'text',
+            'placeholder' => '200 mg',
+            'value' => old('dosage'),
+            'required' => true,
+        ]) --}}
+
 
         <button class="button" type="submit" data-variant="primary">
             Add Medication
         </button>
+
     </form>
 @endsection
-
-@include('partials.nav')
