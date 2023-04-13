@@ -146,6 +146,10 @@ nav li a {
   }
 }
 
+.cardInfo {
+  color: #c2ccdb;
+  text-decoration: unset;
+}
 .cardInfo header {
   display: flex;
   justify-content: space-between;

@@ -16,6 +16,9 @@
 }
 
 .cardInfo {
+    color: $text;
+    text-decoration: unset;
+
     & header {
         display: flex;
         justify-content: space-between;

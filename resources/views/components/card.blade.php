@@ -1,7 +1,7 @@
 <article class="card">
 
     {{-- Displayed info --}}
-    <div class="cardInfo">
+    <a @isset($route)  href={{ $route }} @endisset class="cardInfo">
         <header>
             <h3>{{ $title }}</h3>
         </header>
@@ -9,7 +9,7 @@
         <main>
             {{ $slot }}
         </main>
-    </div>
+    </a>
 
     {{-- Interactivity --}}
     <div class="cardInteractions">

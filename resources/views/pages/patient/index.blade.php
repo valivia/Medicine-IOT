@@ -13,7 +13,8 @@
         <div class="patientsMain">
             @foreach ($patients as $patient)
                 <x-card title="{{ $patient->first_name . ' ' . $patient->last_name }}"
-                    editRoute="{{ route('patient.edit', $patient) }}" deleteRoute="{{ route('patient.destroy', $patient) }}">
+                    route="{{ route('patient.show', $patient) }}" editRoute="{{ route('patient.edit', $patient) }}"
+                    deleteRoute="{{ route('patient.destroy', $patient) }}">
                     <p>@include('partials/icons/location') {{ $patient->address }}</p>
                     <p>@include('partials/icons/cake') {{ date('d-m-Y', strtotime($patient->birthday)) }}</p>
                 </x-card>
