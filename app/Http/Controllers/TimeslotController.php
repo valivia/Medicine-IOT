@@ -15,6 +15,20 @@ class TimeslotController extends Controller
         'day' => 'required|integer|min:0|max:6',
     ];
 
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Patient $patient)
+    {
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $timeslots = $patient->timeslots()->get();
+
+        return view('pages/timeslot/index', compact(['patient', 'timeslots']));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -68,7 +82,7 @@ class TimeslotController extends Controller
      */
     public function show(Patient $patient, Timeslot $timeslot)
     {
-        return view('pages/timeslot/show', compact('timeslot'));
+        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
     }
 
     /**
@@ -76,7 +90,7 @@ class TimeslotController extends Controller
      */
     public function edit(Patient $patient, Timeslot $timeslot)
     {
-        return view('pages/timeslot/edit', compact('timeslot'));
+        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
     }
 
     /**

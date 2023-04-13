@@ -1,13 +1,6 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-    @include('partials.nav')
-    <h1>Create Timeslot</h1>
-
-    <form class="form" method="POST" action="{{ route('patient.timeslot.store', $patient) }}">
-        @method('POST')
-        @csrf
-
+    <x-form title="Timeslot" route="{{ route('patient.timeslot.store', $patient) }}" method="POST">
 
         @include('partials/input', [
             'min' => 0,
@@ -39,15 +32,6 @@
             'required' => true,
         ])
 
-        @if (session('error'))
-            <div class="error">
-                {{ session('error') }}
-            </div>
-        @endif
+    </x-form>
 
-        <button class="button" type="submit" data-variant="primary">
-            Add Timeslot
-        </button>
-
-    </form>
-@endsection
+</x-layout>
