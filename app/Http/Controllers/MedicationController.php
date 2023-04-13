@@ -32,12 +32,10 @@ class MedicationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Medication $medication)
     {
-        return view('pages/medication/show');
+        return view('pages/medication/show', compact("medication"));
     }
 
     /**

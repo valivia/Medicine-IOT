@@ -1,15 +1,13 @@
 @extends('index')
 
 @section('content')
-    <div class="patients">
+    <div class="patient">
         <header class="patientsHeader">
             <h1>Patients</h1>
-            <a class="iconButton" href="{{ route('patient.show') }}">
+            <a class="iconButton" href="{{ route('patient.edit') }}">
                 @include('partials/icons/add')
             </a>
         </header>
-
-
         <div class="patientsMain">
             @foreach ($patients as $patient)
                 <x-card title="{{ $patient->first_name . ' ' . $patient->last_name }}"
@@ -20,15 +18,13 @@
             @endforeach
         </div>
     </div>
-        <div class="patients">
+        <div class="medication">
         <header class="patientsHeader">
             <h1>Patients</h1>
             <a class="iconButton" href="{{ route('patient.create') }}">
                 @include('partials/icons/add')
             </a>
         </header>
-
-
         <div class="patientsMain">
             @foreach ($patients as $patient)
                 <x-card title="{{ $patient->first_name . ' ' . $patient->last_name }}"
