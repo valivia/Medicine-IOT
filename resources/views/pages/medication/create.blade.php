@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('content')
-    <form class="form">
+    <form class="form" method="POST" action="{{ route('medication.store') }}">
         <h2>Create Medication</h2>
 
         <section class="formSection">
@@ -18,6 +18,10 @@
             <label for="dosage">Dosage</label>
             <input placeholder="Dosage" type="text" id="dosage" name="dosage">
         </section>
+
+        <button class="button" type="submit" data-variant="primary">
+            Add Medication
+        </button>
     </form>
 @endsection
 
