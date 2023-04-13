@@ -55,19 +55,19 @@ class TimeslotController extends Controller
         }
 
         // check if timeslot overlaps with existing timeslot.
-        foreach ($currentTimeslots as $currentTimeslot) {
-            $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
-            $endTime = strtotime('+1 hour', $startTime);
+        // foreach ($currentTimeslots as $currentTimeslot) {
+        //     $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
+        //     $endTime = strtotime('+1 hour', $startTime);
 
-            $newStartTime = strtotime($request->day . ' ' . $request->hour . ':' . $request->minute . ':00');
-            $newEndTime = strtotime('+1 hour', $newStartTime);
+        //     $newStartTime = strtotime($request->day . ' ' . $request->hour . ':' . $request->minute . ':00');
+        //     $newEndTime = strtotime('+1 hour', $newStartTime);
 
-            $overlap = max(0, min($endTime, $newEndTime) - max($startTime, $newStartTime)) / 60; // calculate overlap in minutes
+        //     $overlap = max(0, min($endTime, $newEndTime) - max($startTime, $newStartTime)) / 60; // calculate overlap in minutes
 
-            if ($overlap >= 60) {
-                return redirect(route('patient.timeslot.create', $patient))->with('error', 'Timeslot overlaps with existing timeslot');
-            }
-        }
+        //     if ($overlap >= 60) {
+        //         return redirect(route('patient.timeslot.create', $patient))->with('error', 'Timeslot overlaps with existing timeslot');
+        //     }
+        // }
 
         // add timeslot.
         $timeslot = new Timeslot($request->all());

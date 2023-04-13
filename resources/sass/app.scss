@@ -9,6 +9,7 @@
 @import "components/nav";
 @import "components/card";
 @import "components/cardlist";
+@import "components/profile";
 
 // pages
 @import "pages/auth";
@@ -32,9 +33,10 @@ body {
     flex-direction: column;
     min-height: 100vh;
     align-items: center;
+    gap: 1rem;
 
     padding: 1rem;
-    padding-top: 4rem;
+    padding-top: 5rem;
 }
 
 * {
@@ -50,7 +52,7 @@ h4 {
 }
 
 h1 {
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 h2 {

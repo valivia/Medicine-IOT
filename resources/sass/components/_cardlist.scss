@@ -21,8 +21,9 @@
 }
 
 .cardlist {
-    width: min(100%, 50rem);
+    width: $width;
 }
+
 .cardlistHeader {
     display: flex;
     justify-content: space-between;
