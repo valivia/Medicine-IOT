@@ -8,17 +8,13 @@
 
     background: $secondary;
 
-    @include medium() {
-        background: linear-gradient(-60deg, transparent 30%, $secondary 30%);
-    }
-
     border: 6px solid $secondary;
 
     &[data-variant="big"] {
         width: min(100%, 50rem);
 
         @include medium() {
-            background: $secondary;
+            background: linear-gradient(-60deg, transparent 30%, $secondary 30%);
         }
     }
 }

@@ -35,8 +35,14 @@ body {
     align-items: center;
     gap: 1rem;
 
+    overflow-x: hidden;
+
     padding: 1rem;
-    padding-top: 5rem;
+
+    padding-top: 2rem;
+    @include medium() {
+        padding-top: 6rem;
+    }
 }
 
 * {
@@ -73,4 +79,6 @@ svg {
     fill: currentColor;
     width: 1.1rem;
     height: 1.1rem;
+
+    display: inline-block;
 }

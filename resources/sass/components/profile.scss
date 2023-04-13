@@ -16,4 +16,8 @@
     @include medium() {
         padding: 0.7rem;
     }
+
+    & p {
+        margin: 0;
+    }
 }

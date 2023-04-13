@@ -15,11 +15,26 @@
     </x-card>
 
     <section class="profileButtons">
-        <a class="button" data-variant="{{ $route === 'device' ? 'primary' : 'secondary' }}"
-            href="{{ route('patient.show', $patient) }}">device</a>
-        <a class="button" data-variant="{{ $route === 'medication' ? 'primary' : 'secondary' }}"
-            href="{{ route('patient.medication.index', $patient) }}">medication</a>
-        <a class="button" data-variant="{{ $route === 'timeslot' ? 'primary' : 'secondary' }}"
-            href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
+
+        @if ($route !== 'device')
+            <a class="button" data-variant="secondary" href="{{ route('patient.show', $patient) }}">device</a>
+        @else
+            <p class="button" data-variant="primary">device</p>
+        @endif
+
+        @if ($route !== 'medication')
+            <a class="button" data-variant="secondary"
+                href="{{ route('patient.medication.index', $patient) }}">medication</a>
+        @else
+            <p class="button" data-variant="primary">medication</p>
+        @endif
+
+        @if ($route !== 'timeslot')
+            <a class="button" data-variant="secondary"
+                href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
+        @else
+            <p class="button" data-variant="primary">timeslots</p>
+        @endif
+
     </section>
 </section>
