@@ -1,0 +1,17 @@
+.cardlist {
+    width: min(100%, 50rem);
+}
+.cardlistHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.cardlistMain {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+}
