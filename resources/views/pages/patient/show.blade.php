@@ -1,7 +1,6 @@
 @extends('index')
 
 @section('content')
-{{ $patient->first_name }}
     <div class="patients">
         <header class="patientsHeader">
             <h1>Patient</h1>
