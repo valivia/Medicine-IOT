@@ -10,32 +10,43 @@
 
 
         @include('partials/input', [
+            'min' => 0,
+            'max' => 23,
             'name' => 'hour',
             'label' => 'Hour',
             'type' => 'number',
-            'value' => (int) date('G'),
+            'value' => old('hour') ?? (int) date('H'),
             'required' => true,
         ])
 
         @include('partials/input', [
+            'min' => 0,
+            'max' => 59,
             'name' => 'minute',
             'label' => 'Minute',
             'type' => 'number',
-            'value' => (int) date('i'),
+            'value' => old('minute') ?? (int) date('i'),
             'required' => true,
         ])
 
         @include('partials/input', [
+            'min' => 1,
+            'max' => 7,
             'name' => 'day',
             'label' => 'Day',
             'type' => 'number',
-            'value' => (int) date('d'),
+            'value' => old('day') ?? (int) date('N'),
             'required' => true,
         ])
 
+        @if (session('error'))
+            <div class="error">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <button class="button" type="submit" data-variant="primary">
-            Create Patient
+            Add Timeslot
         </button>
 
     </form>
