@@ -4,8 +4,10 @@
     @include('partials.nav')
     <h1>Edit Medication</h1>
 
+    {{-- <a class="button" data-variant="primary" href="{{ route('medication.index') }}">Back</a> --}}
+
     <form class="form" method="POST" action='{{ route('patient.medication.update', compact(["medication", "patient"]) ) }}'>
-        @method('POST')
+        @method('PUT')
         @csrf
 
 

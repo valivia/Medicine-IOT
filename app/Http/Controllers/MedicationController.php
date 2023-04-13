@@ -66,7 +66,11 @@ class MedicationController extends Controller
      */
     public function update(Request $request, Patient $patient, Medication $medication)
     {
-        //
+        $formFields = $request->validate($this->validation);
+
+        $medication->update($formFields);
+
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     /**
