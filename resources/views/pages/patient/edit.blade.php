@@ -8,8 +8,6 @@
 
         <h2>Edit Patient</h2>
 
-        {{-- <a class="button" data-variant="primary" href="{{ route('patient.index') }}">Back</a> --}}
-
         @include('partials/input', [
             'name' => 'first_name',
             'label' => 'First Name',
@@ -53,8 +51,14 @@
             'required' => true,
         ])
 
+        @if (session('error'))
+            <div class="error">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <button class="button" type="submit" data-variant="primary">
-            Create Patient
+            Edit Patient
         </button>
 
     </form>
