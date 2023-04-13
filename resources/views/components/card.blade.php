@@ -1,4 +1,7 @@
-<article class="card">
+<article
+    class="card"
+    @isset($big) data-variant="big" @endisset
+>
 
     {{-- Displayed info --}}
     <a @isset($route) href={{ $route }} @endisset class="cardInfo">
