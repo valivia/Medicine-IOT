@@ -16,4 +16,5 @@
             </x-card>
         @endforeach
     </x-cardlist>
+
 </x-layout>
