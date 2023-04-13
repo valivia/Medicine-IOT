@@ -40,6 +40,7 @@ class TimeslotController extends Controller
             return redirect(route('patient.timeslot.create', $patient))->with('error', 'Your device only supports 14 timeslots');
         }
 
+        // check if timeslot overlaps with existing timeslot.
         foreach ($currentTimeslots as $currentTimeslot) {
             $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
             $endTime = strtotime('+1 hour', $startTime);
@@ -54,8 +55,7 @@ class TimeslotController extends Controller
             }
         }
 
-
-
+        // add timeslot.
         $timeslot = new Timeslot($request->all());
         $timeslot->patient()->associate($patient);
         $timeslot->save();
