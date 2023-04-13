@@ -11,6 +11,15 @@ class Medication extends Model
 {
     use HasFactory;
 
+    protected $table = "medications";
+
+    protected $fillable = [
+        'name',
+        'description',
+        'dosage',
+        'patient_id',
+    ];
+
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);

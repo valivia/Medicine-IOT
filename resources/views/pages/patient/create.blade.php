@@ -1,56 +1,60 @@
 @extends('index')
-@include('partials.nav')
 
 @section('content')
-    <form class="form" method="PUT">
-        @method('PUT')
+    @include('partials.nav')
+    <h1>Create Patient</h1>
+
+    <form class="form" method="POST" action="{{ route('patient.store') }}">
+        @method('POST')
         @csrf
 
-        <h2>Create Patient</h2>
 
-        {{-- First name --}}
-        <section class="formSection">
-            <label for="first_name">First Name</label>
-            <input placeholder="First Name" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
-                required>
-            @error('first_name')
-                <p class="error">{{ $message }}</p>
-            @enderror
-        </section>
+        @include('partials/input', [
+            'name' => 'first_name',
+            'label' => 'First Name',
+            'placeholder' => 'E.g. John',
+            'value' => old('first_name'),
+            'required' => true,
+        ])
 
-        {{-- Last name --}}
-        <section class="formSection">
-            <label for="last_name">Last Name</label>
-            <input placeholder="Last Name" type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
-                required>
-            @error('last_name')
-                <p class="error">{{ $message }}</p>
-            @enderror
-        </section>
+        @include('partials/input', [
+            'name' => 'last_name',
+            'label' => 'Last Name',
+            'placeholder' => 'E.g. Doe',
+            'value' => old('last_name'),
+            'required' => true,
+        ])
 
-        {{-- Birthday --}}
-        <section class="formSection">
-            <label for="birthday">Birthday</label>
-            <input placeholder="Birthday" type="date" id="birthday" name="birthday" value="{{ old('birthday') }}"
-                required>
-            @error('birthday')
-                <p class="error">{{ $message }}</p>
-            @enderror
-        </section>
 
-        {{-- Address --}}
-        <section class="formSection">
-            <label for="address">Address</label>
-            <input placeholder="Address" type="text" id="address" name="address" value="{{ old('address') }}" required>
-            @error('address')
-                <p class="error">{{ $message }}</p>
-            @enderror
-        </section>
+        @include('partials/input', [
+            'name' => 'birthday',
+            'label' => 'Birthday',
+            'type' => 'date',
+            'placeholder' => 'E.g. 01-01-2000',
+            'value' => old('birthday'),
+            'required' => true,
+        ])
 
-        <section class="authButtons">
-            <a class="button" data-variant="secondary" href='/patient'>Back</a>
-            <button class="button" data-variant="primary" type="submit">Add Patient</button>
-        </section>
+
+        @include('partials/input', [
+            'name' => 'address',
+            'label' => 'Address',
+            'placeholder' => 'E.g. 1234 Street',
+            'value' => old('address'),
+            'required' => true,
+        ])
+
+        @include('partials/input', [
+            'name' => 'device_id',
+            'label' => 'Device ID',
+            'placeholder' => 'E.g. 123456789',
+            'value' => old('device_id'),
+            'required' => true,
+        ])
+
+        <button class="button" type="submit" data-variant="primary">
+            Create Patient
+        </button>
 
     </form>
 @endsection

@@ -1,23 +1,50 @@
 .button {
-  border: 3px solid #466f7b;
-  border-radius: 0.5em;
-  padding: 0.5em;
-  margin: 0 0.5em;
+  border: none;
+  border-radius: 100vmax;
+  padding: 0.7em;
   flex-grow: 1;
   text-decoration: none;
   text-align: center;
   font-size: 1rem;
-  color: #ffffff;
-}
-.button:hover {
   cursor: pointer;
+  color: #c2ccdb;
+  outline: 2px solid #374e64;
+  transition: transform 150ms ease-in-out, outline 250ms ease-in-out;
+  transform: translateY(0);
 }
 .button[data-variant=primary] {
-  background-color: #466f7b;
+  background: #374e64;
 }
 .button[data-variant=secondary] {
-  background-color: transparent;
-  color: #466f7b;
+  background: transparent;
+}
+.button:hover {
+  transform: translateY(-0.15em);
+  outline: 4px solid rgba(194, 204, 219, 0.8);
+}
+
+.iconButton {
+  border-radius: 100%;
+  padding: 0.9rem;
+  background-color: #1e1f1f;
+  border: none;
+  color: #c2ccdb;
+  cursor: pointer;
+  border: 2px solid currentColor;
+  transition: all 0.1s ease-in-out;
+}
+.iconButton svg {
+  transform: scale(1);
+  transition: all 0.1s ease-in-out;
+}
+.iconButton:active svg {
+  transform: scale(0.9);
+}
+.iconButton:hover {
+  background-color: #374e64;
+}
+.iconButton:hover svg {
+  transform: scale(1.2);
 }
 
 .form {
@@ -25,7 +52,7 @@
   flex-direction: column;
   text-align: left;
   gap: 1em;
-  width: 100%;
+  width: min(100%, 40em);
 }
 
 .formHorizontal {
@@ -35,6 +62,9 @@
   width: 100%;
   gap: 1em;
 }
+.formHorizontal > * {
+  flex-grow: 1;
+}
 
 .formSection {
   display: flex;
@@ -43,33 +73,42 @@
 
 .form input {
   background-color: transparent;
-  border: 3px solid #466f7b;
+  border: 3px solid #374e64;
   border-radius: 0.6em;
   padding: 0.7em;
-  color: #ffffff;
+  color: #c2ccdb;
 }
 
 nav {
   position: fixed;
   bottom: 0;
   left: 0;
+  background: #374e64;
   width: 100%;
-  background: #2c3e50;
 }
 @media (min-width: 768px) {
   nav {
     top: 0;
     bottom: unset;
+    padding-right: 10rem;
+    width: auto;
+    background: linear-gradient(-70deg, transparent 8rem, #374e64 8rem);
   }
 }
 nav ul {
-  width: min(100%, 70ch);
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
+}
+@media (min-width: 768px) {
+  nav ul {
+    justify-content: flex-start;
+  }
 }
 
 nav li {
@@ -78,12 +117,12 @@ nav li {
 }
 @media (min-width: 768px) {
   nav li {
-    padding-block: 0.5em 0.1em;
+    padding-block: 0.3em 0.3em;
   }
 }
 nav li:hover {
-  background: #ffffff;
-  color: #2c3e50;
+  background: #c2ccdb;
+  color: #374e64;
 }
 nav li a {
   display: block;
@@ -92,16 +131,50 @@ nav li a {
   color: currentColor;
 }
 
-.authWrapper,
-.authMain {
+.card {
+  background: #374e64;
+  border-radius: 1em;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  padding: 1.5rem 1rem 1rem 1.8rem;
+  background: #374e64;
+  border: 6px solid #374e64;
+}
+@media (min-width: 768px) {
+  .card {
+    background: linear-gradient(-60deg, transparent 30%, #374e64 30%);
+  }
+}
+
+.cardInfo header {
+  display: flex;
+  justify-content: space-between;
+}
+.cardInfo main {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cardInfo main p {
+  margin: 0;
+}
+
+.cardInteractions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.authWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.authMain {
-  width: min(80%, 60ch);
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: 20vh;
 }
 
 /* Form  */
@@ -116,7 +189,6 @@ nav li a {
   }
 }
 .authForm {
-  width: 100%;
   animation-duration: 600ms;
   animation-name: slidein;
   animation-timing-function: ease-in-out;
@@ -127,6 +199,26 @@ nav li a {
   margin-top: 4em;
   display: flex;
   justify-content: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.patients {
+  width: min(100%, 50rem);
+}
+
+.patientsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.patientsMain {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -138,30 +230,56 @@ body,
 html {
   margin: 0;
   padding: 0;
-  color: #ffffff;
-  background-color: #282c2f;
-  font-family: "Roboto", sans-serif;
+  color: #c2ccdb;
+  font-family: "Rubik", "Roboto", sans-serif;
+  background: #1e1f1f;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  padding: 1rem;
+  padding-top: 4rem;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Rubik", "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
 }
 
 h1 {
-  padding-top: 5em;
-  font-size: clamp(1rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 h2 {
-  margin-top: 2em;
-  padding: 1em 0 1em 0;
+  font-size: clamp(1rem, 5vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(0.75rem, 5vw, 1.5rem);
+  padding: 0;
+  margin: 0;
 }
 
 ::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(194, 204, 219, 0.5);
 }
 
 ::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(194, 204, 219, 0.5);
+}
+
+svg {
+  fill: currentColor;
+  width: 1.1rem;
+  height: 1.1rem;
 }
