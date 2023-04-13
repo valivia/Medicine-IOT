@@ -7,15 +7,6 @@ use Illuminate\View\View;
 
 class MedicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +37,7 @@ class MedicationController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pages/medication/show');
     }
 
     /**
