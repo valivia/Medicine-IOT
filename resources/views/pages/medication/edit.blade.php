@@ -1,7 +1,9 @@
 @extends('index')
 
 @section('content')
-    <form class="form">
+    <form class="form" action='{{ route('patient.medication.update', compact(["patient", "medication"]) ) }}'>
+        @method('POST')
+        @csrf
         <h2>Edit Medication</h2>
 
         <section class="formSection">

@@ -40,17 +40,7 @@ class PatientController extends Controller
 
         $patient = Patient::create($formFields);
 
-        return redirect('/patient/' . $patient->id);
-    }
-
-    // single patient. return view 'pages/patient/show'
-    public function show(Patient $patient)
-    {
-
-        $medications = $patient->medications()->get();
-        return view("pages/patient/show", ["patient"=>$patient, "medications"=>$medications]);
-
-        
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     // return view
@@ -69,7 +59,7 @@ class PatientController extends Controller
 
         $patient->update($formFields);
 
-        return redirect('/patient/' . $patient->id);
+        return redirect(route('patient.medication.index', $patient->id));
     }
 
     // delete patient

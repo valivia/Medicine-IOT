@@ -4,7 +4,7 @@
     @include('partials.nav')
     <h1>Add Medication</h1>
 
-    <form class="form" method="POST" action="{{ route('medication.store') }}">
+    <form class="form" method="POST" action='{{ route('patient.medication.store', compact("patient") ) }}'>
         @method('POST')
         @csrf
 
