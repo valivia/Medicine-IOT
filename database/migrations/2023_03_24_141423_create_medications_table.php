@@ -18,7 +18,7 @@ class CreateMedicationsTable extends Migration
             $table->timestamps();
 
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
 
             $table->foreignId('patient_id')->constrained();
         });
