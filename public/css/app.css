@@ -79,6 +79,11 @@
   color: #c2ccdb;
 }
 
+.error {
+  color: #ac5858;
+  font-size: 0.8em;
+}
+
 nav {
   position: fixed;
   bottom: 0;
