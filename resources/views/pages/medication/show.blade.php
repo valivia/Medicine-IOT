@@ -19,9 +19,9 @@
         </div>
     </div>
         <div class="medication">
-        <header class="patientsHeader">
+        <header class="medicationHeader">
             <h1>Patients</h1>
-            <a class="iconButton" href="{{ route('patient.create') }}">
+            <a class="iconButton" href="{{ route('medication.create') }}">
                 @include('partials/icons/add')
             </a>
         </header>

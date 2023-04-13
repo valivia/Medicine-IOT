@@ -46,7 +46,11 @@ class PatientController extends Controller
     // single patient. return view 'pages/patient/show'
     public function show(Patient $patient)
     {
-        return view("pages/patient/show", compact("patient"));
+
+        $medications = $patient->medications()->get();
+        return view("pages/patient/show", ["patient"=>$patient, "medications"=>$medications]);
+
+        
     }
 
     // return view
