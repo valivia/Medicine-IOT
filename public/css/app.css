@@ -25,17 +25,22 @@
 
 .iconButton {
   border-radius: 100%;
-  padding: 0.9rem;
+  border: 2px solid currentColor;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1e1f1f;
-  border: none;
   color: #c2ccdb;
   cursor: pointer;
-  border: 2px solid currentColor;
   transition: all 0.1s ease-in-out;
 }
 .iconButton svg {
   transform: scale(1);
   transition: all 0.1s ease-in-out;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 .iconButton:active svg {
   transform: scale(0.9);
@@ -175,6 +180,25 @@ nav li a {
   gap: 0.5rem;
 }
 
+.cardlist {
+  width: min(100%, 50rem);
+}
+
+.cardlistHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cardlistMain {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+}
+
 .authWrapper {
   display: flex;
   flex-direction: column;
@@ -209,25 +233,6 @@ nav li a {
   display: flex;
   justify-content: center;
   gap: 1em;
-  width: 100%;
-}
-
-.patients {
-  width: min(100%, 50rem);
-}
-
-.patientsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.patientsMain {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
   width: 100%;
 }
 

@@ -19,7 +19,7 @@
     <div class="patients">
         <header class="patientsHeader">
             <h1>Medication</h1>
-            <a class="iconButton" href="{{ route('patient.medication.create',compact('patient')) }}">
+            <a class="iconButton" href="{{ route('patient.medication.create', compact('patient')) }}">
                 @include('partials/icons/add')
             </a>
         </header>
@@ -30,7 +30,8 @@
         </section>
         <div class="patienstMain">
             @foreach ($medications as $medication)
-                <x-card title="{{ $medication->name }}" editRoute="{{ route('patient.medication.edit', compact(['patient', 'medication'])) }}"
+                <x-card title="{{ $medication->name }}"
+                    editRoute="{{ route('patient.medication.edit', compact(['patient', 'medication'])) }}"
                     deleteRoute="{{ route('patient.medication.destroy', compact(['patient', 'medication'])) }}">
                     <p>@include('partials/icons/location') {{ $medication->description }}</p>
                 </x-card>

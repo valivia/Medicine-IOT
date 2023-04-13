@@ -22,6 +22,16 @@ class Patient extends Model
         'last_fill',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($patient) {
+            $patient->medications()->delete();
+            $patient->timeslots()->delete();
+        });
+    }
+
 
     public function user(): BelongsTo
     {
