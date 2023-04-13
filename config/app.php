@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'trusted_proxies' => [env('APP_URL', 'http://localhost')],
+    'proxy_ips' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
