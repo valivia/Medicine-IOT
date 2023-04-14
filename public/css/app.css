@@ -280,6 +280,7 @@
 
 .profileButtons {
   display: flex;
+  flex-wrap: wrap;
   width: min(100%, 40em);
   gap: 1rem;
   background-color: #1e1f1f;
@@ -291,6 +292,12 @@
   .profileButtons {
     padding: 0.7rem;
   }
+}
+.profileButtons > * {
+  flex-grow: 1;
+}
+.profileButtons > * > button {
+  width: 100%;
 }
 .profileButtons p {
   margin: 0;

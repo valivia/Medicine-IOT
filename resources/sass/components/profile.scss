@@ -4,6 +4,7 @@
 
 .profileButtons {
     display: flex;
+    flex-wrap: wrap;
     width: $width;
 
     gap: 1rem;
@@ -15,6 +16,13 @@
 
     @include medium() {
         padding: 0.7rem;
+    }
+
+    & > * {
+        flex-grow: 1;
+        & > button {
+            width: 100%;
+        }
     }
 
     & p {

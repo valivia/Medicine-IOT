@@ -3,19 +3,21 @@
     <x-profile :patient="$patient" route="device" />
 
     <x-cardlist title="Device Controls">
-        <form method="POST" action="{{ route('device.rotate', [$patient->device_id, -1]) }}">
-            @csrf
-            <button class="button" data-variant="secondary" type="submit">
-                Back
-            </button>
-        </form>
+        <section class="profileButtons">
+            <form method="POST" action="{{ route('device.rotate', [$patient->device_id, -1]) }}">
+                @csrf
+                <button class="button" data-variant="secondary" type="submit">
+                    Back
+                </button>
+            </form>
 
-        <form method="POST" action="{{ route('device.rotate', [$patient->device_id, 1]) }}">
-            @csrf
-            <button class="button" data-variant="secondary" type="submit">
-                Next
-            </button>
-        </form>
+            <form method="POST" action="{{ route('device.rotate', [$patient->device_id, 1]) }}">
+                @csrf
+                <button class="button" data-variant="secondary" type="submit">
+                    Next
+                </button>
+            </form>
+        </section>
     </x-cardlist>
 
 </x-layout>
