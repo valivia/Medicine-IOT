@@ -15,8 +15,11 @@
 
                 <p>
                     @include('partials/icons/clock')
-                    {{ $medication->timeslotCount }}
-                    {{ Str::plural('timeslot', $medication->timeslotCount) }}
+                    {{-- {{ $medication->timeslotCount }}
+                    {{ Str::plural('timeslot', $medication->timeslotCount) }} --}}
+                    {{ $medication->timeslots->map(function ($timeslot) {
+                            return date('D', strtotime("Sunday +{$timeslot->day} days")) . " " . str_pad($timeslot->hour, 2, '0', STR_PAD_LEFT) . ':' . str_pad($timeslot->minute, 2, '0', STR_PAD_LEFT);
+                        })->join(', ') }}
                 </p>
 
             </x-card>

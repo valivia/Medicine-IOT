@@ -14,14 +14,17 @@ class TimeslotController extends Controller
         'hour' => 'required|integer|min:0|max:23',
         'minute' => 'required|integer|min:0|max:59',
         'day' => 'required|integer|min:0|max:6',
+        'medication_ids' => 'required|array',
+        'medication_ids.*' => 'required|integer|exists:medications,id'
     ];
+
 
     // check if two timeslots are within 60 minutes of each other.
     private function within60Minutes(DateTime $dateTime1, DateTime $dateTime2)
     {
         $diff = abs($dateTime1->getTimestamp() - $dateTime2->getTimestamp());
         error_log($diff);
-        return ($diff <= 3600); // 3600 seconds = 60 minutes
+        return ($diff <= 3540); // 3600 seconds = 60 minutes
     }
 
     /**
@@ -45,7 +48,8 @@ class TimeslotController extends Controller
      */
     public function create(Patient $patient)
     {
-        return view('pages/timeslot/create', compact('patient'));
+        $medications = $patient->medications;
+        return view('pages/timeslot/create', compact('patient', "medications"));
     }
 
     /**
@@ -78,16 +82,9 @@ class TimeslotController extends Controller
         $timeslot = new Timeslot($request->all());
         $timeslot->patient()->associate($patient);
         $timeslot->save();
+        $timeslot->medications()->sync($request->medication_ids);
 
         return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Patient $patient, Timeslot $timeslot)
-    {
-        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
     }
 
     /**
@@ -95,7 +92,8 @@ class TimeslotController extends Controller
      */
     public function edit(Patient $patient, Timeslot $timeslot)
     {
-        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
+        $medications = $patient->medications;
+        return view('pages/timeslot/edit', compact('patient', "timeslot", "medications"));
     }
 
     /**
@@ -108,8 +106,10 @@ class TimeslotController extends Controller
 
         $request->validate($this->validation);
         $timeslot->update($request->all());
+        $timeslot->medications()->sync($request->medication_ids);
+        $timeslot->save();
 
-        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
+        return redirect(route('patient.timeslot.index', [$patient, $timeslot]));
     }
 
     /**
