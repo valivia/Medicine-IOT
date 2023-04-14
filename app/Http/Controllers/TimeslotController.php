@@ -16,13 +16,13 @@ class TimeslotController extends Controller
         'day' => 'required|integer|min:0|max:6',
     ];
 
+    // check if two timeslots are within 60 minutes of each other.
     private function within60Minutes(DateTime $dateTime1, DateTime $dateTime2)
     {
         $diff = abs($dateTime1->getTimestamp() - $dateTime2->getTimestamp());
         error_log($diff);
         return ($diff <= 3600); // 3600 seconds = 60 minutes
     }
-
 
     /**
      * Display a listing of the resource.
@@ -36,8 +36,6 @@ class TimeslotController extends Controller
             $timeslot->medicationCount = $timeslot->medicationCount();
             return $timeslot;
         });
-
-
 
         return view('pages/timeslot/index', compact(['patient', 'timeslots']));
     }
@@ -108,9 +106,7 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
-        error_log($request->get('minute'));
         $request->validate($this->validation);
-
         $timeslot->update($request->all());
 
         return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));

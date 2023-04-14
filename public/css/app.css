@@ -57,7 +57,7 @@
   flex-direction: column;
   text-align: left;
   gap: 1em;
-  width: min(100%, 50em);
+  width: min(100%, 40em);
 }
 
 .formHorizontal {
@@ -217,7 +217,7 @@
   }
 }
 .cardlist {
-  width: min(100%, 50em);
+  width: min(100%, 40em);
 }
 
 .cardlistHeader {
@@ -275,12 +275,12 @@
 }
 
 .profileMain {
-  width: min(100%, 50em);
+  width: min(100%, 40em);
 }
 
 .profileButtons {
   display: flex;
-  width: min(100%, 50em);
+  width: min(100%, 40em);
   gap: 1rem;
   background-color: #1e1f1f;
   margin-top: 1rem;
