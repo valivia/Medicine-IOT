@@ -10,7 +10,7 @@
 
                 {{-- Info --}}
                 @isset($medication->description)
-                    <p>@include('partials/icons/location') {{ $medication->description }}</p>
+                    <p>@include('partials/icons/description') {{ $medication->description }}</p>
                 @endisset
 
                 <p>
