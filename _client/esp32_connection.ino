@@ -13,6 +13,8 @@
 #include <HTTPClient.h>
 ezButton button(23);
 #define USE_SERIAL Serial
+   /*Variable to store photoresistor value*/
+int sensor =34;  
 
 #define IN1 19
 #define IN2 18
@@ -38,6 +40,7 @@ void setup() {
     button.setDebounceTime(100);
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, 0);
+    int LDR_Val = analogRead(sensor);
     myservo.attach(13);
     myStepper.setSpeed(5);
     Serial.begin(115200);
@@ -58,6 +61,8 @@ void setup() {
     start_time = millis();
 }
 
+
+
 int enough_time_passed(){
   if(millis() > start_time + REQUEST_INTERVAL_TIME){
     start_time = millis();
@@ -67,7 +72,7 @@ int enough_time_passed(){
   }
 }
 
-void set_remote_button(){
+void lightstatus(){
   // wait for WiFi connection
   if((wifiMulti.run() == WL_CONNECTED)) {
 
@@ -75,7 +80,7 @@ void set_remote_button(){
 
 
       // configure traged server and url
-    http.begin("http://iot.hootsifer.com/draai");
+    http.begin("http://iot.hootsifer.com/light");
 
 
 
@@ -107,7 +112,7 @@ void set_remote_button(){
 
 void get_timeslot(){
 
-  if(!enough_time_passed()) {
+  if(!get_timeslot()) {
     return;
   }
 
@@ -117,7 +122,7 @@ void get_timeslot(){
 
 
       // configure traged server and url
-    http.begin("http://iot.hootsifer.com/draai");
+    http.begin("http://iot.hootsifer.com/device/123/should_open");
 
 
       // start connection and send HTTP header
@@ -142,23 +147,23 @@ void get_timeslot(){
   }
 }
 
-// void buttonPressed(){
-//   // Servo
-//   for (pos = 0; pos <= 90; pos += 1) { // goes from 0 degrees to 180 degrees
-//     // in steps of 1 degree
-//     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-//     delay(15);                       // waits 15ms for the servo to reach the position
-//   }
-//   // Stepper
-//    Serial.println("clockwise");
-//   myStepper.step(stepsPerRevolution / 7);
-//   delay(1000);
-//   // Servo 2
-//   for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-//     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-//     delay(15);                       // waits 15ms for the servo to reach the position
-//   }
-// }
+void buttonPressed(){
+  // Servo
+  for (pos = 0; pos <= 90; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  // Stepper
+   Serial.println("clockwise");
+  myStepper.step(stepsPerRevolution / 15);
+  delay(1000);
+  // Servo 2
+  for (pos = 90; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+}
 
 
 
@@ -168,4 +173,5 @@ void loop() {
   if (buttonState == LOW) {
     buttonPressed();
   }
+  if ()
 }
