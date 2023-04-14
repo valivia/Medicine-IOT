@@ -18,7 +18,10 @@ use App\Http\Controllers\DeviceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () { return redirect('/login');});
+
+Route::get('/', function () {
+    return redirect('/login');
+});
 
 Route::get("/login", [UserController::class, "loginIndex"])->name("login");
 Route::post("/login", [UserController::class, "login"]);
@@ -39,5 +42,14 @@ Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"])
 // pings when the caretaker refills the box.
 Route::get("/device/{id}/reset", [DeviceController::class, "reset"]);
 
-// turn device now
-Route::get("/device/{id}/turn_now", [DeviceController::class, "turn_now"]);
+// rotate
+Route::get("/device/{id}/rotate", [DeviceController::class, "rotate"]);
+Route::post("/device/{id}/rotate", [DeviceController::class, "set_rotate"]);
+
+// seek
+Route::get("/device/{id}/should_seek", [DeviceController::class, "should_seek"]);
+Route::post("/device/{id}/should_seek", [DeviceController::class, "set_should_seek"]);
+
+// refill
+Route::get("/device/{id}/should_refill", [DeviceController::class, "should_refill"]);
+Route::post("/device/{id}/should_refill", [DeviceController::class, "set_should_refill"]);

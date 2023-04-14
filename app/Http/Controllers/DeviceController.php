@@ -54,9 +54,96 @@ class DeviceController extends Controller
         return response(200);
     }
 
-    public function turn_now($id){
-        // dd($id);
+
+    // Seek
+    public function should_seek($id)
+    {
+        // Get the patient.
         $patient = Patient::where("device_id", $id)->first();
+
+        // If the patient should seek, return 200.
+        if ($patient->should_seek) {
+            $patient->should_seek = false;
+            $patient->save();
+            return response(200);
+        }
+
+        // If the patient should not seek, return 204.
+        return response(204);
+    }
+
+    public function set_should_seek($id)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        // Set the patient to seek.
+        $patient->should_seek = true;
+        $patient->save();
+
+        return response(200);
+    }
+
+    // Refill
+
+    public function should_refill($id)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        // If the patient should refill, return 200.
+        if ($patient->should_refill) {
+            $patient->should_refill = false;
+            $patient->save();
+            return response(200);
+        }
+
+        // If the patient should not refill, return 204.
+        return response(204);
+    }
+
+    public function set_should_refill($id)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        // Set the patient to refill.
+        $patient->should_refill = true;
+        $patient->save();
+
+        return response(200);
+    }
+
+    // Rotate
+    public function rotate($id)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        // If the patient should rotate, return 200.
+        if ($patient->rotate != 0) {
+            $patient->rotate = 0;
+            $patient->save();
+            return response(200);
+        }
+
+        // If the patient should not rotate, return 204.
+        return response(204);
+    }
+
+    public function set_rotate($id, $direction)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        if ($direction != 1 && $direction != -1) {
+            return response(400);
+        }
+
+        // Set the patient to rotate.
+        $patient->rotate = $direction;
+        $patient->save();
+
         return response(200);
     }
 }
