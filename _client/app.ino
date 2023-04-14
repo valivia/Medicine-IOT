@@ -70,7 +70,7 @@ void setup()
     Serial.begin(115200);
 
     // Sensor
-    pinMode(sensorPin, INPUT_PULLUP);
+    sensor.setDebounceTime(700);
 
     // LED
     pinMode(ledPin, OUTPUT);

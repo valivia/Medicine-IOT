@@ -92,7 +92,7 @@ class DeviceController extends Controller
             "failed" => false
         ]);
 
-        $patient->last_fill = now();
+        $patient->last_fill = new DateTime();
 
         return response(200);
     }
@@ -132,7 +132,7 @@ class DeviceController extends Controller
         $patient = Patient::where("device_id", $id)->first();
 
         // Set the patient to refill.
-        $patient->last_sensor = now();
+        $patient->last_sensor = new DateTime();
         $patient->save();
 
         return response(200);
