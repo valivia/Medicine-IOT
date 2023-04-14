@@ -7,7 +7,7 @@
     {{ $title }}
 </h1>
 
-<form class="form" action="{{ $route }}">
+<form class="form" action="{{ $route }}" method="post">
     @method($method ?? 'POST')
     @csrf
 

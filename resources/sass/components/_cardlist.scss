@@ -1,11 +1,38 @@
-.cardlist {
-    width: min(100%, 50rem);
+@keyframes slideInSide {
+    0% {
+        opacity: 0;
+        transform: translateX(2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
+
+@keyframes slideInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cardlist {
+    width: $width;
+}
+
 .cardlistHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    & h1 {
+        animation: slideInTop 400ms ease-in-out;
+    }
 }
 
 .cardlistMain {
@@ -14,4 +41,17 @@
     align-items: stretch;
     gap: 1rem;
     width: 100%;
+
+    & > * {
+        animation-name: slideInSide;
+        animation-duration: 350ms;
+        animation-fill-mode: both;
+        animation-timing-function: ease-in-out;
+
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                animation-delay: 0.1s * $i;
+            }
+        }
+    }
 }

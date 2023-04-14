@@ -1,17 +1,38 @@
-
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <ArduinoJson.h>
+#include <Stepper.h>
 
+const int stepsPerRevolution = 2048;
+const int checkDelay = 300000;
 const char* ssid = "AndroidAP";
 const char* password = "12345678";
-const String websiteUrl = "https://iot.hootsifer.com/device/123/rotate"; // Replace with your website URL
+const String serverUrl = "https://iot.hootsifer.com/timeslot"; // Replace with your Laravel server URL
+
+#define IN1 19
+#define IN2 18
+#define IN3 5
+#define IN4 17
+
+Stepper myStepper(stepsPerRevolution, IN1, IN3, IN2, IN4);
+const int buttonPin = 4;
+int buttonState = 0;
+
+void buttonPressed(){
+  // Stepper turn 1 slot
+   Serial.println("clockwise");
+  myStepper.step(stepsPerRevolution / 15);
+  // Cooldown
+  delay(1000);
+}
+
 
 void setup() {
-  Serial.begin(115200);
-  
-  // Connect to Wi-Fi
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
+    myStepper.setSpeed(5);
+    pinMode(buttonPin, INPUT_PULLUP);
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
@@ -30,6 +51,6 @@ void loop() {
     Serial.println("Website is offline"); // Server is offline or unreachable
   }
   http.end();
-  
+
   delay(5000); // Delay for 5 seconds before checking again
 }

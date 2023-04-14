@@ -1,43 +1,39 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-    <div class="patients">
-        <header class="patientsHeader">
-            <h1>Patient</h1>
-        </header>
-        <div class="patientsMain">
-        </div>
-    </div>
+    <x-profile :patient="$patient" route="medication" />
 
+    <x-cardlist title="Medications" createRoute="{{ route('patient.medication.create', $patient) }}">
+        @foreach ($medications as $medication)
+            <x-card title="{{ $medication->name }}"
+                editRoute="{{ route('patient.medication.edit', compact(['patient', 'medication'])) }}"
+                deleteRoute="{{ route('patient.medication.destroy', compact(['patient', 'medication'])) }}">
 
-    <x-card title="{{ $patient->first_name . ' ' . $patient->last_name }}" route="{{ route('patient.show', $patient) }}"
-        editRoute="{{ route('patient.edit', $patient) }}" deleteRoute="{{ route('patient.destroy', $patient) }}">
-        <p>@include('partials/icons/location') {{ $patient->address }}</p>
-        <p>@include('partials/icons/cake') {{ date('d-m-Y', strtotime($patient->birthday)) }}</p>
-    </x-card>
+                {{-- Info --}}
+                @isset($medication->description)
+                    <p>@include('partials/icons/description') {{ $medication->description }}</p>
+                @endisset
 
-    <div class="patients">
-        <header class="patientsHeader">
-            <h1>Medication</h1>
-            <a class="iconButton" href="{{ route('patient.medication.create', compact('patient')) }}">
-                @include('partials/icons/add')
-            </a>
-        </header>
-        <section>
-            <a class="button" href="{{ route('patient.show', $patient) }}">devices</a>
-            <a class="button" href="{{ route('patient.medication.index', $patient) }}">medication</a>
-            <a class="button" href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
-        </section>
-        <div class="patienstMain">
-            @foreach ($medications as $medication)
-                <x-card title="{{ $medication->name }}"
-                    editRoute="{{ route('patient.medication.edit', compact(['patient', 'medication'])) }}"
-                    deleteRoute="{{ route('patient.medication.destroy', compact(['patient', 'medication'])) }}">
-                    <p>@include('partials/icons/location') {{ $medication->description }}</p>
-                </x-card>
-            @endforeach
-        </div>
-    </div>
-@endsection
+                <p>
+                    @include('partials/icons/clock')
+                    {{-- {{ $medication->timeslotCount }}
+                    {{ Str::plural('timeslot', $medication->timeslotCount) }} --}}
+                    {{ $medication->timeslots->count() == 0
+                        ? 'None'
+                        : $medication->timeslots->sort(function ($a, $b) {
+                                $aTime = new DateTime("{$a->day}-01-2023 {$a->hour}:{$a->minute}:00");
+                                $bTime = new DateTime("{$b->day}-01-2023 {$b->hour}:{$b->minute}:00");
+                                return $aTime <=> $bTime;
+                            })->map(function ($timeslot) {
+                                return date('D', strtotime("Sunday +{$timeslot->day} days")) .
+                                    ' ' .
+                                    str_pad($timeslot->hour, 2, '0', STR_PAD_LEFT) .
+                                    ':' .
+                                    str_pad($timeslot->minute, 2, '0', STR_PAD_LEFT);
+                            })->join(', ') }}
+                </p>
 
-@include('partials.nav')
+            </x-card>
+        @endforeach
+    </x-cardlist>
+
+</x-layout>

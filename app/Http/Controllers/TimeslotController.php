@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\Timeslot;
+use DateTime;
 use Illuminate\Http\Request;
 
 class TimeslotController extends Controller
@@ -13,8 +14,18 @@ class TimeslotController extends Controller
         'hour' => 'required|integer|min:0|max:23',
         'minute' => 'required|integer|min:0|max:59',
         'day' => 'required|integer|min:0|max:6',
+        'medication_ids' => 'array',
+        'medication_ids.*' => 'required|integer|exists:medications,id'
     ];
 
+
+    // check if two timeslots are within 60 minutes of each other.
+    private function within60Minutes(DateTime $dateTime1, DateTime $dateTime2)
+    {
+        $diff = abs($dateTime1->getTimestamp() - $dateTime2->getTimestamp());
+        error_log($diff);
+        return ($diff <= 3540); // 3600 seconds = 60 minutes
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,7 +35,16 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
-        $timeslots = $patient->timeslots()->get();
+        $timeslots = $patient->timeslots->sort(
+            function ($a, $b) {
+                $aTime = new DateTime("{$a->day}-01-2023 {$a->hour}:{$a->minute}:00");
+                $bTime = new DateTime("{$b->day}-01-2023 {$b->hour}:{$b->minute}:00");
+                return $aTime <=> $bTime;
+            }
+        )->map(function ($timeslot) {
+            $timeslot->medicationCount = $timeslot->medicationCount();
+            return $timeslot;
+        });
 
         return view('pages/timeslot/index', compact(['patient', 'timeslots']));
     }
@@ -34,7 +54,8 @@ class TimeslotController extends Controller
      */
     public function create(Patient $patient)
     {
-        return view('pages/timeslot/create', compact('patient'));
+        $medications = $patient->medications;
+        return view('pages/timeslot/create', compact('patient', "medications"));
     }
 
     /**
@@ -55,16 +76,10 @@ class TimeslotController extends Controller
         }
 
         // check if timeslot overlaps with existing timeslot.
-        foreach ($currentTimeslots as $currentTimeslot) {
-            $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
-            $endTime = strtotime('+1 hour', $startTime);
-
-            $newStartTime = strtotime($request->day . ' ' . $request->hour . ':' . $request->minute . ':00');
-            $newEndTime = strtotime('+1 hour', $newStartTime);
-
-            $overlap = max(0, min($endTime, $newEndTime) - max($startTime, $newStartTime)) / 60; // calculate overlap in minutes
-
-            if ($overlap >= 60) {
+        foreach ($currentTimeslots as $timeslot) {
+            $dateTime1 = new DateTime("{$timeslot->day}-01-2023 {$timeslot->hour}:{$timeslot->minute}:00");
+            $dateTime2 = new DateTime("{$request->day}-01-2023 {$request->hour}:{$request->minute}:00");
+            if ($this->within60Minutes($dateTime1, $dateTime2)) {
                 return redirect(route('patient.timeslot.create', $patient))->with('error', 'Timeslot overlaps with existing timeslot');
             }
         }
@@ -73,16 +88,9 @@ class TimeslotController extends Controller
         $timeslot = new Timeslot($request->all());
         $timeslot->patient()->associate($patient);
         $timeslot->save();
+        $timeslot->medications()->sync($request->medication_ids);
 
-        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Patient $patient, Timeslot $timeslot)
-    {
-        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
+        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
     }
 
     /**
@@ -90,7 +98,8 @@ class TimeslotController extends Controller
      */
     public function edit(Patient $patient, Timeslot $timeslot)
     {
-        return view('pages/timeslot/edit', compact(['patient', 'timeslot']));
+        $medications = $patient->medications;
+        return view('pages/timeslot/edit', compact('patient', "timeslot", "medications"));
     }
 
     /**
@@ -102,10 +111,11 @@ class TimeslotController extends Controller
             return redirect("/login");
 
         $request->validate($this->validation);
-
         $timeslot->update($request->all());
+        $timeslot->medications()->sync($request->medication_ids);
+        $timeslot->save();
 
-        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
+        return redirect(route('patient.timeslot.index', [$patient, $timeslot]));
     }
 
     /**
@@ -118,6 +128,6 @@ class TimeslotController extends Controller
 
         $timeslot->delete();
 
-        return redirect('/patient');
+        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
     }
 }

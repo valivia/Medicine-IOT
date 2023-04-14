@@ -19,6 +19,10 @@ use App\Http\Controllers\DeviceController;
 |
 */
 
+Route::get('/', function () {
+    return redirect('/login');
+});
+
 Route::get("/login", [UserController::class, "loginIndex"])->name("login");
 Route::post("/login", [UserController::class, "login"]);
 
@@ -37,3 +41,15 @@ Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"])
 
 // pings when the caretaker refills the box.
 Route::get("/device/{id}/reset", [DeviceController::class, "reset"]);
+
+// rotate
+Route::get("/device/{id}/rotate", [DeviceController::class, "rotate"])->name("device.rotate");
+Route::post("/device/{id}/rotate/{direction}", [DeviceController::class, "set_rotate"])->name("device.rotate");
+
+// seek
+Route::get("/device/{id}/should_seek", [DeviceController::class, "should_seek"])->name("device.seek");
+Route::post("/device/{id}/should_seek", [DeviceController::class, "set_should_seek"])->name("device.seek");
+
+// refill
+Route::get("/device/{id}/should_refill", [DeviceController::class, "should_refill"])->name("device.refill");
+Route::post("/device/{id}/should_refill", [DeviceController::class, "set_should_refill"])->name("device.refill");

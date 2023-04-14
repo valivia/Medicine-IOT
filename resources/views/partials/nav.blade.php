@@ -1,8 +1,7 @@
-<nav>
-    <ul>
-        <li><a href="{{ url()->previous() }}">Back</a></li>
-        <li><a href="{{ route('patient.index') }}">Patients</a></li>
-        <li><a href="{{ route('user.show', auth()->user()) }}">Profile</a></li>
-        <li><a href="{{ route('logout') }}">Logout</a></li>
-    </ul>
+<nav class="navWrapper">
+    <div class="navMain">
+        <a class="back" href="{{ url()->previous() }}">@include('/partials/icons/back') Back </a>
+        <a href="{{ route('patient.index') }}">@include('/partials/icons/home') Home</a>
+        {{-- <a href="{{ route('logout') }}">@include('/partials/icons/signout')Logout</a> --}}
+    </div>
 </nav>

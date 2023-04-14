@@ -35,13 +35,13 @@ class PatientController extends Controller
     // post request. validate form and put in db with user id
     public function store(Request $request)
     {
-        $formFields = $request->validate($this->validation);
 
+        $formFields = $request->validate($this->validation);
         $formFields["user_id"] = auth()->user()->id;
 
         $patient = Patient::create($formFields);
 
-        return redirect(route('patient.medication.index', $patient->id));
+        return redirect(route('patient.index'));
     }
 
     public function show(Patient $patient)
@@ -58,17 +58,18 @@ class PatientController extends Controller
     // put request
     public function update(Request $request, Patient $patient)
     {
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
         $validation = $this->validation;
         $validation['device_id'] = ['required', Rule::unique('patients', 'device_id')->ignore($patient->id)];
 
         $formFields = $request->validate($validation);
 
-        if ($patient->user_id !== auth()->user()->id)
-            return redirect("/login");
 
         $patient->update($formFields);
 
-        return redirect(route('patient.medication.index', $patient->id));
+        return redirect(route('patient.index'));
     }
 
     // delete patient
@@ -79,6 +80,6 @@ class PatientController extends Controller
 
         $patient->delete();
 
-        return redirect('/patient');
+        return redirect(route('patient.index'));
     }
 }

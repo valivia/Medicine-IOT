@@ -1,0 +1,23 @@
+.profileMain {
+    width: $width;
+}
+
+.profileButtons {
+    display: flex;
+    width: $width;
+
+    gap: 1rem;
+    background-color: $primary;
+
+    margin-top: 1rem;
+    flex-direction: row;
+    border-radius: 100vmin;
+
+    @include medium() {
+        padding: 0.7rem;
+    }
+
+    & p {
+        margin: 0;
+    }
+}

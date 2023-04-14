@@ -1,11 +1,35 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-        <section>
-            <a class="button" href="{{ route('patient.show', $patient) }}">devices</a>
-            <a class="button" href="{{ route('patient.medication.index', $patient) }}">medication</a>
-            <a class="button" href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
-        </section>
-@endsection
+    <x-profile :patient="$patient" route="device" />
 
-@include('partials.nav')
+    <x-cardlist title="Device Controls">
+        <form method="POST" action="{{ route('device.rotate', [$patient->device_id, -1]) }}">
+            @csrf
+            <button class="button" data-variant="secondary" type="submit">
+                Back
+            </button>
+        </form>
+
+        <form method="POST" action="{{ route('device.rotate', [$patient->device_id, 1]) }}">
+            @csrf
+            <button class="button" data-variant="secondary" type="submit">
+                Next
+            </button>
+        </form>
+
+        <form method="POST" action="{{ route('device.refill', [$patient->device_id]) }}">
+            @csrf
+            <button class="button" data-variant="secondary" type="submit">
+                Refill
+            </button>
+        </form>
+
+        <form method="POST" action="{{ route('device.seek', [$patient->device_id]) }}">
+            @csrf
+            <button class="button" data-variant="secondary" type="submit">
+                Sync disk
+            </button>
+        </form>
+    </x-cardlist>
+
+</x-layout>
