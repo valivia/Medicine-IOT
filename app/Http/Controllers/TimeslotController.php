@@ -14,7 +14,7 @@ class TimeslotController extends Controller
         'hour' => 'required|integer|min:0|max:23',
         'minute' => 'required|integer|min:0|max:59',
         'day' => 'required|integer|min:0|max:6',
-        'medication_ids' => 'required|array',
+        'medication_ids' => 'array',
         'medication_ids.*' => 'required|integer|exists:medications,id'
     ];
 
@@ -35,7 +35,13 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
-        $timeslots = $patient->timeslots->map(function ($timeslot) {
+        $timeslots = $patient->timeslots->sort(
+            function ($a, $b) {
+                $aTime = new DateTime("{$a->day}-01-2023 {$a->hour}:{$a->minute}:00");
+                $bTime = new DateTime("{$b->day}-01-2023 {$b->hour}:{$b->minute}:00");
+                return $aTime <=> $bTime;
+            }
+        )->map(function ($timeslot) {
             $timeslot->medicationCount = $timeslot->medicationCount();
             return $timeslot;
         });

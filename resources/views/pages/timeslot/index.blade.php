@@ -17,9 +17,11 @@
                     @include('partials/icons/meds')
                     {{-- {{ $timeslot->medicationCount }} --}}
                     {{-- {{ Str::plural('medication', $timeslot->medicationCount) }} --}}
-                    {{ $timeslot->medications->map(function ($medication) {
-                            return $medication->name;
-                        })->join(', ') }}
+                    {{ $timeslot->medications->count() == 0
+                        ? 'None'
+                        : $timeslot->medications->map(function ($medication) {
+                                return $medication->name;
+                            })->join(', ') }}
                 </p>
 
             </x-card>
