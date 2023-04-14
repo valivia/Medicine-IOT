@@ -81,7 +81,7 @@ class DeviceController extends Controller
         $patient->should_seek = true;
         $patient->save();
 
-        return response(200);
+        return redirect()->back();
     }
 
     // Refill
@@ -111,7 +111,7 @@ class DeviceController extends Controller
         $patient->should_refill = true;
         $patient->save();
 
-        return response(200);
+        return redirect()->back();
     }
 
     // Rotate
@@ -144,6 +144,6 @@ class DeviceController extends Controller
         $patient->rotate = $direction;
         $patient->save();
 
-        return response(200);
+        return redirect()->back();
     }
 }
