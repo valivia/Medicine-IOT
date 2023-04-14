@@ -1,26 +1,27 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#include <WiFiMulti.h>
 #include <ezButton.h>
 #include <HTTPClient.h>
 #include <Stepper.h>
-ezButton button(23);
+#include <WiFi.h>
+#include <WiFiMulti.h>
 #define USE_SERIAL Serial
-   /*Variable to store photoresistor value*/
 #define sensor 34
-const int stepsPerRevolution = 2048; 
 #define IN1 19
 #define IN2 18
 #define IN3 5
 #define IN4 17
+const int stepsPerRevolution = 2048; 
+ezButton button(23);
 int LDR_Val = 0;
 WiFiMulti wifiMulti;
 
-// const int LED_PIN = 22;
-// int led_state = 0;
 
-// long start_time = 0;
-// long REQUEST_INTERVAL_TIME = 5000;
+
+
+const char* ssid = "NETGEAR_11N";
+const char* password = "3C6b18f1ed";
+const String websiteUrl = "https://iot.hootsifer.com/device/123/rotate"; // Replace with your website URL
+const String WebReset = "https://iot.hootsifer.com/device/123/reset";
 
 Stepper myStepper(stepsPerRevolution, IN1, IN3, IN2, IN4);
 const int buttonPin = 4;
@@ -28,37 +29,20 @@ int buttonState = 0;
 int pos = 0;
 
 void setup() {
-
-    USE_SERIAL.begin(115200);
-    button.setDebounceTime(100);
-    // pinMode(LED_PIN, OUTPUT);
-    // digitalWrite(LED_PIN, 0);
-    int LDR_Val = analogRead(sensor);
-    myStepper.setSpeed(5);
-    Serial.begin(115200);
-    pinMode(buttonPin, INPUT_PULLUP);
-    for(uint8_t t = 4; t > 0; t--) {
-        USE_SERIAL.printf("[SETUP] WAIT %d...\n", t);
-        USE_SERIAL.flush();
-        delay(1000);
-    }
-
-    wifiMulti.addAP("NETGEAR_11N", "3C6b18f1ed");
-    // start_time = millis();
+  Serial.begin(115200);
+  myStepper.setSpeed(5);
+  pinMode(buttonPin, INPUT_PULLUP);
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
 }
 
-// int enough_time_passed(){
-//   if(millis() > start_time + REQUEST_INTERVAL_TIME){
-//     start_time = millis();
-//     return true;
-//   } else{
-//     return false;
-//   }
-// }
-
 void lightstatus(){
-  if(LDR_Val >= 10) {
-   if((wifiMulti.run() == WL_CONNECTED)) {
+    if((wifiMulti.run() == WL_CONNECTED)) {
     HTTPClient http;
       // configure traged server and url
 
@@ -70,50 +54,10 @@ void lightstatus(){
 
       // httpCode will be negative on error
     if(httpCode > 0) {
-          
+      
       // file found at server
       if(httpCode == HTTP_CODE_OK) {
         String payload = http.getString();
-        // led_state = payload.toInt();
-        // set_led(led_state);
-        // USE_SERIAL.println(led_state);
-      }
-    } else {
-        // USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
-    }
-
-    http.end();
-  }}
-}
-
-void get_timeslot(){
-
-  if(!get_timeslot()) {
-    return;
-  }
-
-   if((wifiMulti.run() == WL_CONNECTED)) {
-
-    HTTPClient http;
-
-
-      // configure traged server and url
-    http.begin("http://iot.hootsifer.com/device/123/should_open");
-
-
-      // start connection and send HTTP header
-    int httpCode = http.GET();
-
-      // httpCode will be negative on error
-    if(httpCode > 0) {
-          
-
-      // file found at server
-      if(httpCode == HTTP_CODE_OK) {
-        String payload = http.getString();
-        // led_state = payload.toInt();
-        // set_led(led_state);
-        // USE_SERIAL.println(led_state);
       }
     } else {
         // USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
@@ -122,22 +66,26 @@ void get_timeslot(){
     http.end();
   }
 }
-
-void buttonPressed(){
-  // Stepper
-   Serial.println("clockwise");
-  myStepper.step(stepsPerRevolution / 15);
-  delay(1000);
-}
-
-
 
 void loop() {
-  buttonState = digitalRead(buttonPin);
-  Serial.println(buttonState);
-  if (buttonState == LOW) {
-    buttonPressed();
-  }
-  int LDR_Val = analogRead(sensor);
-  lightstatus(LDR_Val);
+  // Check website status
+  // HTTPClient http;
+  // http.begin(WebReset);
+  // int httpCode = http.GET();
+  // Serial.println(httpCode);
+
+  // if (httpCode == HTTP_CODE_OK) {
+  //   Serial.println("Website is online"); // Server is online, HTTP 200 OK
+  // } else {
+  //   Serial.println("Website is offline"); // Server is offline or unreachable
+  // }
+    Serial.println("cheese");
+  // int LDR_Val = analogRead(sensor);
+  // if(LDR_Val >= 10){
+    lightstatus();
+// }
+  
+  // http.end();
+  
+  delay(5000); // Delay for 5 seconds before checking again
 }
