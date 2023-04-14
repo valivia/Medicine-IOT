@@ -29,4 +29,9 @@ class Medication extends Model
     {
         return $this->belongsToMany(Timeslot::class);
     }
+
+    public function timeslotCount(): int
+    {
+        return $this->timeslots()->count();
+    }
 }

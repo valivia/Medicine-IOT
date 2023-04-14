@@ -32,7 +32,12 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
-        $timeslots = $patient->timeslots()->get();
+        $timeslots = $patient->timeslots->map(function ($timeslot) {
+            $timeslot->medicationCount = $timeslot->medicationCount();
+            return $timeslot;
+        });
+
+
 
         return view('pages/timeslot/index', compact(['patient', 'timeslots']));
     }
@@ -103,6 +108,7 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
+        error_log($request->get('minute'));
         $request->validate($this->validation);
 
         $timeslot->update($request->all());
