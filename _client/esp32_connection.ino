@@ -14,7 +14,7 @@
 ezButton button(23);
 #define USE_SERIAL Serial
    /*Variable to store photoresistor value*/
-int sensor =34;  
+#define sensor 34  
 
 #define IN1 19
 #define IN2 18
@@ -56,7 +56,7 @@ void setup() {
         delay(1000);
     }
 
-    wifiMulti.addAP("AndroidAP", "12345678");
+    wifiMulti.addAP("NETGEAR_11N", "3C6b18f1ed");
 
     start_time = millis();
 }
@@ -73,20 +73,23 @@ int enough_time_passed(){
 }
 
 void lightstatus(){
-  // wait for WiFi connection
-  if((wifiMulti.run() == WL_CONNECTED)) {
+
+  if(!LDR_Val <= 10) {
+    return;
+  }
+
+   if((wifiMulti.run() == WL_CONNECTED)) {
 
     HTTPClient http;
 
 
       // configure traged server and url
-    http.begin("http://iot.hootsifer.com/light");
-
+    http.begin("http://iot.hootsifer.com/device/123/reset");
 
 
       // start connection and send HTTP header
     int httpCode = http.GET();
-
+    Serial.println(httpCode);
       // httpCode will be negative on error
     if(httpCode > 0) {
           
@@ -94,7 +97,9 @@ void lightstatus(){
       // file found at server
       if(httpCode == HTTP_CODE_OK) {
         String payload = http.getString();
-        USE_SERIAL.println(payload);
+        // led_state = payload.toInt();
+        // set_led(led_state);
+        // USE_SERIAL.println(led_state);
       }
     } else {
         // USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
@@ -103,12 +108,6 @@ void lightstatus(){
     http.end();
   }
 }
-
-// void set_led(int led_state){
-//   if (led_state == 1){
-//     digitalWrite(LED_PIN, HIGH);
-//   }
-//   else {digitalWrite(LED_PIN, LOW);}}
 
 void get_timeslot(){
 
