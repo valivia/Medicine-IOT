@@ -81,19 +81,15 @@ class DeviceController extends Controller
         ];
     }
 
-    public function reset($id)
+    // Rotate
+    public function rotate(Patient $patient)
     {
-        // Get the patient.
-        $patient = Patient::where("device_id", $id)->first();
-
-        // Reset all timeslots for the patient.
-        Timeslot::where("patient_id", $patient->id)->update([
-            "received" => false,
-            "failed" => false
-        ]);
-
-        $patient->last_fill = now();
-
-        return response(200);
+        // If the patient should rotate, return 200.
+        $direction = $patient->rotate;
+        if ($direction != 0) {
+            $patient->rotate = 0;
+            $patient->save();
+        }
+        return $direction;
     }
 }
