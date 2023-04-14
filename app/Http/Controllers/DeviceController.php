@@ -53,4 +53,12 @@ class DeviceController extends Controller
 
         return response(200);
     }
+
+    
+    public function index(Patient $patient)
+    {
+        return view('pages/devices/index', compact("devices"));
+    }
 }
+
+
