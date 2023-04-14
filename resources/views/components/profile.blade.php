@@ -12,6 +12,17 @@
             @endif
         </p>
         <p>@include('partials/icons/device') {{ $patient->device_id }}</p>
+        @isset($patient->last_sensor)
+            @php
+                $lastSensorTimestamp = strtotime($patient->last_sensor);
+                $currentTimestamp = time();
+                $oneMonthAgoTimestamp = strtotime('-1 month', $currentTimestamp);
+            @endphp
+            @if ($lastSensorTimestamp >= $oneMonthAgoTimestamp)
+                <p class="error">@include('partials/icons/warning') last flipped upside down at
+                    {{ date('l jS  H:i', $lastSensorTimestamp) }}</p>
+            @endif
+        @endisset
     </x-card>
 
     <section class="profileButtons">

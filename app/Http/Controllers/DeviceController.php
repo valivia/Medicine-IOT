@@ -124,4 +124,17 @@ class DeviceController extends Controller
 
         return redirect()->back();
     }
+
+    // Sensor
+    public function set_sensor($id)
+    {
+        // Get the patient.
+        $patient = Patient::where("device_id", $id)->first();
+
+        // Set the patient to refill.
+        $patient->last_sensor = now();
+        $patient->save();
+
+        return response(200);
+    }
 }

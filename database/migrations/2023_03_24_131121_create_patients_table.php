@@ -25,6 +25,7 @@ class CreatePatientsTable extends Migration
             // Device controls.
             $table->boolean("should_seek")->default(false);
             $table->boolean("should_refill")->default(false);
+            $table->dateTime("last_sensor")->nullable();
             $table->integer("rotate")->default(0);
 
 

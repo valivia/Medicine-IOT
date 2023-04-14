@@ -22,6 +22,7 @@ class Patient extends Model
         'last_fill',
         'should_seek',
         'should_refill',
+        'last_sensor',
         'rotate',
     ];
 

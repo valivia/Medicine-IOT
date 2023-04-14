@@ -41,3 +41,6 @@ Route::post("/device/{id}/rotate/{direction}", [DeviceController::class, "set_ro
 
 // seek
 Route::get("/device/{id}", [DeviceController::class, "index"]);
+
+// sensor
+Route::get("/device/{id}/sensor", [DeviceController::class, "set_sensor"])->name("device.sensor");
