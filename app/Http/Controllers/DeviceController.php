@@ -54,7 +54,6 @@ class DeviceController extends Controller
         return response(200);
     }
 
-
     // Seek
     public function should_seek($id)
     {
@@ -148,3 +147,5 @@ class DeviceController extends Controller
         return redirect()->back();
     }
 }
+
+
