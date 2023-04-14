@@ -60,13 +60,14 @@ class UserController extends Controller
         return view("pages/register");
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $formFields = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
 
-        if(auth()->attempt($formFields)) {
+        if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
             $user = auth()->user();
 
@@ -82,7 +83,7 @@ class UserController extends Controller
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
             'last_name' => ['required', 'min:2'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'min:6'],
             'dob' => ['required']
         ]);
@@ -100,13 +101,13 @@ class UserController extends Controller
         return redirect('/user/' . $user->id);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         auth()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/login');
-
     }
 }

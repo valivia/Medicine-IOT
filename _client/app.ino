@@ -28,8 +28,8 @@ ezButton button(buttonPin);
 ezButton sensor(sensorPin);
 
 // Variables ##########
-const char *ssid = "GNX52CAFC";
-const char *password = "A4D4DF993F4F";
+const char *ssid = "";
+const char *password = "";
 const String server = "https://iot.hootsifer.com/device/123/"; // Replace with your website URL
 
 // Sensor
