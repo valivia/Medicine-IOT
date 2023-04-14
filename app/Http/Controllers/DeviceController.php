@@ -122,9 +122,10 @@ class DeviceController extends Controller
 
         // If the patient should rotate, return 200.
         if ($patient->rotate != 0) {
+            $direction = $patient->rotate;
             $patient->rotate = 0;
             $patient->save();
-            return response(200);
+            return response($direction, 200);
         }
 
         // If the patient should not rotate, return 204.
