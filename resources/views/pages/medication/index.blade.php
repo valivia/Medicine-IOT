@@ -15,8 +15,21 @@
 
                 <p>
                     @include('partials/icons/clock')
-                    {{ $medication->timeslotCount }}
-                    {{ Str::plural('timeslot', $medication->timeslotCount) }}
+                    {{-- {{ $medication->timeslotCount }}
+                    {{ Str::plural('timeslot', $medication->timeslotCount) }} --}}
+                    {{ $medication->timeslots->count() == 0
+                        ? 'None'
+                        : $medication->timeslots->sort(function ($a, $b) {
+                                $aTime = new DateTime("{$a->day}-01-2023 {$a->hour}:{$a->minute}:00");
+                                $bTime = new DateTime("{$b->day}-01-2023 {$b->hour}:{$b->minute}:00");
+                                return $aTime <=> $bTime;
+                            })->map(function ($timeslot) {
+                                return date('D', strtotime("Sunday +{$timeslot->day} days")) .
+                                    ' ' .
+                                    str_pad($timeslot->hour, 2, '0', STR_PAD_LEFT) .
+                                    ':' .
+                                    str_pad($timeslot->minute, 2, '0', STR_PAD_LEFT);
+                            })->join(', ') }}
                 </p>
 
             </x-card>

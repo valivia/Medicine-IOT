@@ -17,7 +17,7 @@ class CreateMedicatiansTimeslotsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('dosage');
+            $table->string('dosage')->nullable();
 
             $table->integer('timeslot_id')->unsigned();
             $table->integer('medication_id')->unsigned();

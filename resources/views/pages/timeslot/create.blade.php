@@ -32,6 +32,19 @@
             'required' => true,
         ])
 
+        <select name="medication_ids[]" multiple="multiple">
+            @foreach ($medications as $medication)
+                <option value="{{ $medication->id }}"
+                    {{ in_array($medication->id, old('medication_ids', [])) ? ' selected' : '' }}>
+                    {{ $medication->name }}
+                </option>
+            @endforeach
+        </select>
+
+        @error('medication_ids')
+            <p class="error">{{ $message }}</p>
+        @enderror
+
     </x-form>
 
 </x-layout>

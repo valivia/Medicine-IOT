@@ -4,7 +4,8 @@
 
     <x-cardlist title="Timeslots" createRoute="{{ route('patient.timeslot.create', $patient) }}">
         @foreach ($timeslots as $timeslot)
-            <x-card title="{{ str_pad($timeslot->hour, 2, '0', STR_PAD_LEFT) . ':' . str_pad($timeslot->minute, 2, '0', STR_PAD_LEFT) }}"
+            <x-card
+                title="{{ str_pad($timeslot->hour, 2, '0', STR_PAD_LEFT) . ':' . str_pad($timeslot->minute, 2, '0', STR_PAD_LEFT) }}"
                 editRoute="{{ route('patient.timeslot.edit', [$patient, $timeslot]) }}"
                 deleteRoute="{{ route('patient.timeslot.destroy', [$patient, $timeslot]) }}">
                 <p>
@@ -14,8 +15,13 @@
 
                 <p>
                     @include('partials/icons/meds')
-                    {{ $timeslot->medicationCount }}
-                    {{ Str::plural('medication', $timeslot->medicationCount) }}
+                    {{-- {{ $timeslot->medicationCount }} --}}
+                    {{-- {{ Str::plural('medication', $timeslot->medicationCount) }} --}}
+                    {{ $timeslot->medications->count() == 0
+                        ? 'None'
+                        : $timeslot->medications->map(function ($medication) {
+                                return $medication->name;
+                            })->join(', ') }}
                 </p>
 
             </x-card>
