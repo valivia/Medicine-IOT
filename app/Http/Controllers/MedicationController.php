@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\Medication;
 use Illuminate\Http\Request;
@@ -18,7 +19,13 @@ class MedicationController extends Controller
 
     public function index(Patient $patient)
     {
-        $medications = Medication::where('patient_id', $patient->id)->get();
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $medications = $patient->medications->map(function ($medication) {
+            $medication->timeslotCount = $medication->timeslotCount();
+            return $medication;
+        });
 
         return view('pages/medication/index', compact(["medications", "patient"]));
     }
@@ -36,8 +43,12 @@ class MedicationController extends Controller
      */
     public function store(Request $request, Patient $patient)
     {
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
         $formFields = $request->validate($this->validation);
         $formFields["patient_id"] = $patient->id;
+
         $medication = Medication::create($formFields);
         $medication->save();
 
@@ -65,6 +76,9 @@ class MedicationController extends Controller
      */
     public function update(Request $request, Patient $patient, Medication $medication)
     {
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
         $formFields = $request->validate($this->validation);
 
         $medication->update($formFields);
@@ -77,6 +91,11 @@ class MedicationController extends Controller
      */
     public function destroy(Patient $patient, Medication $medication)
     {
-        //
+        if ($patient->user_id !== auth()->user()->id)
+            return redirect("/login");
+
+        $medication->delete();
+
+        return redirect(route('patient.medication.index', $patient->id));
     }
 }

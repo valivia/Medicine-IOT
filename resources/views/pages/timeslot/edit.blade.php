@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-form title="Timeslot" route="{{ route('patient.timeslot.store', $patient) }}" method="PUT">
+    <x-form title="Timeslot" route="{{ route('patient.timeslot.update', [$patient, $timeslot]) }}" method="PUT">
         @include('partials/input', [
             'min' => 0,
             'max' => 23,

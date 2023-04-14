@@ -13,14 +13,16 @@ class CreateMedicatiansTimeslotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicatians_timeslots', function (Blueprint $table) {
+        Schema::create('medication_timeslot', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
             $table->string('dosage');
 
-            $table->foreignId('medication_id')->constrained();
-            $table->foreignId('timeslot_id')->constrained();
+            $table->integer('timeslot_id')->unsigned();
+            $table->integer('medication_id')->unsigned();
+            $table->foreign('timeslot_id')->references('id')->on('timeslots')->onDelete('cascade');
+            $table->foreign('medication_id')->references('id')->on('medications')->onDelete('cascade');
         });
     }
 

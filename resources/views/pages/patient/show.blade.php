@@ -1,11 +1,8 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-        <section>
-            <a class="button" href="{{ route('patient.show', $patient) }}">devices</a>
-            <a class="button" href="{{ route('patient.medication.index', $patient) }}">medication</a>
-            <a class="button" href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
-        </section>
-@endsection
+    <x-profile :patient="$patient" route="device" />
 
-@include('partials.nav')
+    <x-cardlist title="Device Controls">
+    </x-cardlist>
+
+</x-layout>

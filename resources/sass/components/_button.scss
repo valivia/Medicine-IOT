@@ -13,7 +13,7 @@
 
     color: $text;
 
-    outline: 2px solid $secondary;
+    border: 2px solid $secondary;
 
     &[data-variant="primary"] {
         background: $secondary;
@@ -23,12 +23,12 @@
         background: transparent;
     }
 
-    transition: transform 150ms ease-in-out, outline 250ms ease-in-out;
+    transition: transform 150ms ease-in-out, border 250ms ease-in-out;
 
     transform: translateY(0);
     &:hover {
         transform: translateY(-0.15em);
-        outline: 4px solid rgba($text, 0.8);
+        border: 2px solid rgba($text, 0.8);
     }
 }
 
@@ -36,8 +36,12 @@
     border-radius: 100%;
     border: 2px solid currentColor;
 
-    width: 3rem;
-    height: 3rem;
+    $size: 3rem;
+    padding: 0.8rem;
+
+    font-size: $size;
+    width: $size;
+    height: $size;
 
     display: flex;
     justify-content: center;
@@ -53,8 +57,6 @@
     & svg {
         transform: scale(1);
         transition: all 0.1s ease-in-out;
-        width: 1.1rem;
-        height: 1.1rem;
     }
 
     &:active svg {

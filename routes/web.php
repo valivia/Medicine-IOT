@@ -18,6 +18,7 @@ use App\Http\Controllers\DeviceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () { return redirect('/login');});
 
 Route::get("/login", [UserController::class, "loginIndex"])->name("login");
 Route::post("/login", [UserController::class, "login"]);

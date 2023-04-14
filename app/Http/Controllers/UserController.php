@@ -70,7 +70,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             $user = auth()->user();
 
-            return redirect('/user/' . $user->id);
+            return redirect('/patient');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');

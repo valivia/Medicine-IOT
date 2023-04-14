@@ -53,4 +53,7 @@ class DeviceController extends Controller
 
         return response(200);
     }
+
 }
+
+

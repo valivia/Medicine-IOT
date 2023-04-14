@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\Timeslot;
+use DateTime;
 use Illuminate\Http\Request;
 
 class TimeslotController extends Controller
@@ -15,6 +16,13 @@ class TimeslotController extends Controller
         'day' => 'required|integer|min:0|max:6',
     ];
 
+    // check if two timeslots are within 60 minutes of each other.
+    private function within60Minutes(DateTime $dateTime1, DateTime $dateTime2)
+    {
+        $diff = abs($dateTime1->getTimestamp() - $dateTime2->getTimestamp());
+        error_log($diff);
+        return ($diff <= 3600); // 3600 seconds = 60 minutes
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,7 +32,10 @@ class TimeslotController extends Controller
         if ($patient->user_id !== auth()->user()->id)
             return redirect("/login");
 
-        $timeslots = $patient->timeslots()->get();
+        $timeslots = $patient->timeslots->map(function ($timeslot) {
+            $timeslot->medicationCount = $timeslot->medicationCount();
+            return $timeslot;
+        });
 
         return view('pages/timeslot/index', compact(['patient', 'timeslots']));
     }
@@ -55,16 +66,10 @@ class TimeslotController extends Controller
         }
 
         // check if timeslot overlaps with existing timeslot.
-        foreach ($currentTimeslots as $currentTimeslot) {
-            $startTime = strtotime($currentTimeslot->day . ' ' . $currentTimeslot->hour . ':' . $currentTimeslot->minute . ':00');
-            $endTime = strtotime('+1 hour', $startTime);
-
-            $newStartTime = strtotime($request->day . ' ' . $request->hour . ':' . $request->minute . ':00');
-            $newEndTime = strtotime('+1 hour', $newStartTime);
-
-            $overlap = max(0, min($endTime, $newEndTime) - max($startTime, $newStartTime)) / 60; // calculate overlap in minutes
-
-            if ($overlap >= 60) {
+        foreach ($currentTimeslots as $timeslot) {
+            $dateTime1 = new DateTime("{$timeslot->day}-01-2023 {$timeslot->hour}:{$timeslot->minute}:00");
+            $dateTime2 = new DateTime("{$request->day}-01-2023 {$request->hour}:{$request->minute}:00");
+            if ($this->within60Minutes($dateTime1, $dateTime2)) {
                 return redirect(route('patient.timeslot.create', $patient))->with('error', 'Timeslot overlaps with existing timeslot');
             }
         }
@@ -74,7 +79,7 @@ class TimeslotController extends Controller
         $timeslot->patient()->associate($patient);
         $timeslot->save();
 
-        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
+        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
     }
 
     /**
@@ -102,10 +107,9 @@ class TimeslotController extends Controller
             return redirect("/login");
 
         $request->validate($this->validation);
-
         $timeslot->update($request->all());
 
-        return redirect(route('patient.timeslot.show', [$timeslot->patient, $timeslot]));
+        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
     }
 
     /**
@@ -118,6 +122,6 @@ class TimeslotController extends Controller
 
         $timeslot->delete();
 
-        return redirect('/patient');
+        return redirect(route('patient.timeslot.index', [$timeslot->patient, $timeslot]));
     }
 }

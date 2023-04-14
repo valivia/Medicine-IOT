@@ -3,7 +3,7 @@
     flex-direction: column;
     text-align: left;
     gap: 1em;
-    width: min(100%, 40em);
+    width: $width;
 }
 
 .formHorizontal {

@@ -1,14 +1,6 @@
-@extends('index')
+<x-layout>
 
-@section('content')
-    @include('partials.nav')
-    <h1>Create Patient</h1>
-
-    <form class="form" method="POST" action="{{ route('patient.store') }}">
-        @method('POST')
-        @csrf
-
-
+    <x-form title="Patient" route="{{ route('patient.store') }}" method="POST">
         @include('partials/input', [
             'name' => 'first_name',
             'label' => 'First Name',
@@ -51,16 +43,6 @@
             'value' => old('device_id'),
             'required' => true,
         ])
+    </x-form>
 
-        @if (session('error'))
-            <div class="error">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <button class="button" type="submit" data-variant="primary">
-            Create Patient
-        </button>
-
-    </form>
-@endsection
+</x-layout>
