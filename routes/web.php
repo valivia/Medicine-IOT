@@ -38,3 +38,6 @@ Route::get("/device/{id}/should_open", [DeviceController::class, "should_open"])
 
 // pings when the caretaker refills the box.
 Route::get("/device/{id}/reset", [DeviceController::class, "reset"]);
+
+// turn device now
+Route::get("/device/{id}/turn_now", [DeviceController::class, "turn_now"]);

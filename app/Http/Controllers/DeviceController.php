@@ -53,4 +53,10 @@ class DeviceController extends Controller
 
         return response(200);
     }
+
+    public function turn_now($id){
+        // dd($id);
+        $patient = Patient::where("device_id", $id)->first();
+        return response(200);
+    }
 }
