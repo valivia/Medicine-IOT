@@ -22,6 +22,12 @@ class CreatePatientsTable extends Migration
             $table->dateTime("birthday");
             $table->string("address");
 
+            // Device controls.
+            $table->boolean("should_seek")->default(false);
+            $table->boolean("should_refill")->default(false);
+            $table->int("rotate")->default(0);
+
+
             $table->string("device_id")->unique();
             $table->dateTime("last_fill")->nullable();
 

@@ -20,6 +20,9 @@ class Patient extends Model
         'user_id',
         'device_id',
         'last_fill',
+        'should_seek',
+        'should_refill',
+        'rotate',
     ];
 
     public static function boot()
