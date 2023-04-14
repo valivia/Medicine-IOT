@@ -16,20 +16,6 @@
                 Next
             </button>
         </form>
-
-        <form method="POST" action="{{ route('device.refill', [$patient->device_id]) }}">
-            @csrf
-            <button class="button" data-variant="secondary" type="submit">
-                Refill
-            </button>
-        </form>
-
-        <form method="POST" action="{{ route('device.seek', [$patient->device_id]) }}">
-            @csrf
-            <button class="button" data-variant="secondary" type="submit">
-                Sync disk
-            </button>
-        </form>
     </x-cardlist>
 
 </x-layout>

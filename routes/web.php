@@ -36,4 +36,8 @@ Route::resource("/patient", PatientController::class)->middleware("auth");
 Route::resource("patient.timeslot", TimeslotController::class)->middleware("auth");
 Route::resource("patient.medication", MedicationController::class)->middleware("auth");
 
+// rotate
+Route::post("/device/{id}/rotate/{direction}", [DeviceController::class, "set_rotate"])->name("device.rotate");
+
+// seek
 Route::get("/device/{id}", [DeviceController::class, "index"]);
