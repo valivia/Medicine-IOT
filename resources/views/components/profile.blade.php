@@ -17,23 +17,23 @@
     <section class="profileButtons">
 
         @if ($route !== 'device')
-            <a class="button" data-variant="secondary" href="{{ route('patient.show', $patient) }}">device</a>
+            <a class="button" data-variant="secondary" href="{{ route('patient.show', $patient) }}">Device</a>
         @else
-            <p class="button" data-variant="primary">device</p>
+            <p class="button" data-variant="primary">Device</p>
         @endif
 
         @if ($route !== 'medication')
             <a class="button" data-variant="secondary"
-                href="{{ route('patient.medication.index', $patient) }}">medication</a>
+                href="{{ route('patient.medication.index', $patient) }}">Medication</a>
         @else
-            <p class="button" data-variant="primary">medication</p>
+            <p class="button" data-variant="primary">Medication</p>
         @endif
 
         @if ($route !== 'timeslot')
             <a class="button" data-variant="secondary"
-                href="{{ route('patient.timeslot.index', $patient) }}">timeslots</a>
+                href="{{ route('patient.timeslot.index', $patient) }}">Timeslots</a>
         @else
-            <p class="button" data-variant="primary">timeslots</p>
+            <p class="button" data-variant="primary">Timeslots</p>
         @endif
 
     </section>
