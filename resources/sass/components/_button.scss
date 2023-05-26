@@ -1,0 +1,72 @@
+.button {
+    border: none;
+    border-radius: 100vmax;
+
+    padding: 0.7em;
+    flex-grow: 1;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    color: $text;
+
+    border: 2px solid $secondary;
+
+    &[data-variant="primary"] {
+        background: $secondary;
+    }
+
+    &[data-variant="secondary"] {
+        background: transparent;
+    }
+
+    transition: transform 150ms ease-in-out, border 250ms ease-in-out;
+
+    transform: translateY(0);
+    &:hover {
+        transform: translateY(-0.15em);
+        border: 2px solid rgba($text, 0.8);
+    }
+}
+
+.iconButton {
+    border-radius: 100%;
+    border: 2px solid currentColor;
+
+    $size: 3rem;
+    padding: 0.8rem;
+
+    font-size: $size;
+    width: $size;
+    height: $size;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primary;
+    color: $text;
+
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+
+    & svg {
+        transform: scale(1);
+        transition: all 0.1s ease-in-out;
+    }
+
+    &:active svg {
+        transform: scale(0.9);
+    }
+
+    &:hover {
+        background-color: $secondary;
+        & svg {
+            transform: scale(1.2);
+        }
+    }
+}

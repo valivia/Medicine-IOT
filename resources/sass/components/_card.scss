@@ -1,0 +1,47 @@
+.card {
+    background: $secondary;
+    border-radius: $border-radius;
+
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    padding: 1.5rem 1rem 1rem 1.8rem;
+
+    background: $secondary;
+
+    border: 6px solid $secondary;
+
+    &[data-variant="big"] {
+        width: min(100%, 50rem);
+
+        @include medium() {
+            background: linear-gradient(-60deg, transparent 30%, $secondary 30%);
+        }
+    }
+}
+
+.cardInfo {
+    color: $text;
+    text-decoration: unset;
+
+    & header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & main {
+        padding-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & p {
+            margin: 0;
+        }
+    }
+}
+
+.cardInteractions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
